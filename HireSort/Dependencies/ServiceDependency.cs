@@ -8,6 +8,7 @@ namespace HireSort.Dependencies
         public static void AddServiceDependency(this IServiceCollection services)
         {
             services.AddScoped<IResumeParsing, ResumeParsing>();
+            services.AddScoped<IDashboard, Dashboard>();
 
         }
     }
