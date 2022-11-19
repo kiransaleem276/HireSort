@@ -4,29 +4,19 @@ using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-    public class HomeController : Controller
+    public class CheckCompatibiltyAllController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CheckCompatibiltyAllController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public CheckCompatibiltyAllController(ILogger<CheckCompatibiltyAllController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult CheckCompatibiltyAll()
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        //public IActionResult AddNewJob()
-        //{
-        //    return View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

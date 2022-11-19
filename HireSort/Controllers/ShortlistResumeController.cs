@@ -4,29 +4,19 @@ using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-    public class HomeController : Controller
+    public class ShortlistResumeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ShortlistResumeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ShortlistResumeController(ILogger<ShortlistResumeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult ShortlistResume()
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        //public IActionResult AddNewJob()
-        //{
-        //    return View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
