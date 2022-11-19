@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireSort", "HireSort\HireSort.csproj", "{ED9BCB02-130E-4E46-A681-822A43086D11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED9BCB02-130E-4E46-A681-822A43086D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9BCB02-130E-4E46-A681-822A43086D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9BCB02-130E-4E46-A681-822A43086D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9BCB02-130E-4E46-A681-822A43086D11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6E8404A-194A-4D79-8E52-EE9D78C33921}
+	EndGlobalSection
+EndGlobal
