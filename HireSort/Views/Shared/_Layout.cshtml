@@ -73,15 +73,15 @@
                         <a href="404.html" class="dropdown-item">404</a>
                     </div>
                 </div>*@
-                <a href="contact.html" class="nav-item nav-link">About Us</a>
-                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                <a class="nav-item nav-link" asp-area="" asp-controller="Login" asp-action="Login">About Us</a>
+                <a  class="nav-item nav-link">Contact Us</a>
             </div>
             <a class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block" asp-area="" asp-controller="AddNewJob" asp-action="AddNewJob">Add New Job<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
     <div class="container-xxl bg-white p-0">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
@@ -139,10 +139,10 @@
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a asp-area="" asp-controller="Home" asp-action="AddNewJob">Home</a>
-                            <a asp-area="" asp-controller="Home" asp-action="AddNewJob">Careers</a>
-                            <a asp-area="" asp-controller="Home" asp-action="AddNewJob">About Us</a>
-                            <a asp-area="" asp-controller="Home" asp-action="AddNewJob">Contact Us</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+                            <a asp-area="" asp-controller="Home" asp-action="">Careers</a>
+                            <a asp-area="" asp-controller="Home" asp-action="">About Us</a>
+                            <a asp-area="" asp-controller="Home" asp-action="">Contact Us</a>
                             
                         </div>
                     </div>
@@ -152,7 +152,7 @@
     </div>
     <!-- Footer End -->
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" id="pagescroll"><i class="bi bi-arrow-up"></i></a>
 
     <!--  <script src="~/lib/jquery/dist/jquery.min.js"></script>
       <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -169,4 +169,9 @@
     <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+<style>
+    .main{
+        padding-bottom: 1rem;
+    }
+</style>
 </html>
