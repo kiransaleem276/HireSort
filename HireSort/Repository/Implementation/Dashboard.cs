@@ -25,7 +25,7 @@ namespace HireSort.Repository.Implementation
             departmentList.Add(new Department()
             {
                 DepartmentId = 3,
-                DepartmentName = "Kiran ka susral."
+                DepartmentName = "Finance"
             });
             return GetApiSuccessResponse(departmentList);
 
