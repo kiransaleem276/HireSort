@@ -22,11 +22,6 @@ namespace HireSort.Repository.Implementation
                 DepartmentName = "Human Resource"
             });
 
-            departmentList.Add(new Department()
-            {
-                DepartmentId = 3,
-                DepartmentName = "Kiran ka susral."
-            });
             return GetApiSuccessResponse(departmentList);
 
             //return dt;
