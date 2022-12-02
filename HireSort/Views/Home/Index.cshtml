@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<HireSort.Models.Department>
+
+
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -48,9 +51,37 @@
                             <div class="col-md-4">
                                 <input type="text" class="form-control border-0" placeholder="Keyword" />
                             </div>
+                    <div class="col-md-4">
+
+                        <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DepartmentId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DepartmentName)
+                            </th>
+                           
+                        </tr>
+
+                            @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.DepartmentId)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                              
+                            </tr>
+                        }
+
+                        </table>
+                    </div>
                             <div class="col-md-4">
                                 <select class="form-select border-0">
-                                    <option selected>Department</option>
+                            <option selected>  Department</option>
                                     <option value="1">Development (IT)</option>
                                     <option value="2">Human Resource</option>
                                     <option value="3">Finance</option>
