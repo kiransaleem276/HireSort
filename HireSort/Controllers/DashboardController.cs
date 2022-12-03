@@ -21,7 +21,7 @@ namespace HireSort.Controllers
 
         [HttpGet]
         [Route("departments")]
-        public async Task<IActionResult> GetDepartment([FromQuery])
+        public async Task<IActionResult> GetDepartment()
         {
             var response = await _dashboard.GetDepartment();
             return Ok(response);

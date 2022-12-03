@@ -38,15 +38,6 @@ namespace HireSort.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [HttpGet]
-        [Route("departments")]
-        public async Task<IActionResult> GetDepartment([FromQuery] int clientId)
-        {
-            var response = await _dashboard.GetDepartment(clientId);
-            //= _dashboard.GetDepartment(clientId);
-            return Ok(response);
-
-        }
 
     }
 }

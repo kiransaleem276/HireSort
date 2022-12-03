@@ -10,6 +10,7 @@ namespace HireSort.Repository.Implementation
 {
     public class Dashboard : IDashboard
     {
+        private int clientId = 1;
         private readonly HRContext _dbContext;
         public Dashboard(HRContext dbContext)
         {
@@ -19,7 +20,7 @@ namespace HireSort.Repository.Implementation
         {
             try
             {
-                var departmentList = await _dbContext.Departments.Where(w => w.ClientId == 1 && w.IsActive == true).Select(s => new Department()
+                var departmentList = await _dbContext.Departments.Where(w => w.ClientId == clientId && w.IsActive == true).Select(s => new Department()
                 {
                     DepartmentId = s.DepartmentId,
                     DepartmentName = s.DepartmentName,
@@ -37,7 +38,7 @@ namespace HireSort.Repository.Implementation
         {
             try
             {
-                var vacancies = await _dbContext.Jobs.Where(w => w.ClientId == 1 && w.DepartmentId == departId && w.IsActive == true).Select(s => new VacanciesDepartmentWise()
+                var vacancies = await _dbContext.Jobs.Where(w => w.ClientId == clientId && w.DepartmentId == departId && w.IsActive == true).Select(s => new VacanciesDepartmentWise()
                 {
                     VacancyId = s.JobId,
                     VacancyName = s.JobName
@@ -55,7 +56,7 @@ namespace HireSort.Repository.Implementation
         {
             try
             {
-                var list = _dbContext.Jobs.Where(w => w.ClientId == 1 && w.IsActive == true && w.Department.IsActive == true).Select(s => new DepartmentAndVacancyList()
+                var list = _dbContext.Jobs.Where(w => w.ClientId == clientId && w.IsActive == true && w.Department.IsActive == true).Select(s => new DepartmentAndVacancyList()
                 {
                     DepertId = s.DepartmentId,
                     DepartmentName = s.Department.DepartmentName,
