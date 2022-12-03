@@ -45,10 +45,8 @@
 		<div class="row g-2">
 			<div class="col-md-10">
 				<div class="row g-2">
-					<div class="col-md-4">
-						<input type="text" class="form-control border-0" placeholder="Keyword" />
-					</div>
-					<div class="col-md-4">
+					
+					<div class="col-md-5">
 						<select id="department" name="department" class="form-select border-0">
 							<!--<option selected>Department</option>
 							<option value="1">Development (IT)</option>
@@ -56,12 +54,12 @@
 							<option value="3">Finance</option>-->
 						</select>
 					</div>
-					<div class="col-md-4">
-						<select class="form-select border-0">
-							<option selected>Vacancies</option>
+					<div class="col-md-5">
+						<select id="vacancy" name="vacancy" class="form-select border-0">
+							@*<option selected>Vacancies</option>
 							<option value="1">Web Developer</option>
 							<option value="2">Web Designer</option>
-							<option value="3">Finance</option>
+							<option value="3">Finance</option>*@
 						</select>
 					</div>
 				</div>
@@ -190,22 +188,23 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	   const uri = 'api/Dashboard/departments?clientId=1';
-	   //const uri = 'api/resume/resume-content?resumeName=1';
+	   const uriDept = 'api/Dashboard/departments';
+	const uriVacancy = 'api/Dashboard/vacancies-department-wise?departId=1';
 	   //const uri = 'api/Home/departments?clientId=1';
 
 	$(document).ready(function() {
-	getItems();
+		getDepartments();
+		 getVacancies();
 	});
 
-	   function getItems() {
-		 fetch(uri)
+	   function getDepartments() {
+		 fetch(uriDept)
 		   .then(response => response.json())
-		   .then(data => _displayItems(data))
+			.then(data => _displayItemsDepartment(data))
 		   .catch(error => console.error('Unable to get items.', error));
 	   }
 
-	   function _displayItems(data) {
+	   function _displayItemsDepartment(data) {
 
 		   debugger;
 		 const ddl_Dept = document.getElementById('department');
@@ -226,6 +225,32 @@
 	   }
 
 
+	function getVacancies() {
+		fetch(uriVacancy)
+			.then(response => response.json())
+			.then(data => _displayItemsVacancy(data))
+			.catch(error => console.error('Unable to get items.', error));
+	}
+
+	function _displayItemsVacancy(data) {
+
+		debugger;
+		const ddl_Dept = document.getElementById('vacancy');
+
+		var status = data.statusCode
+		var parsedata = data.successData
+		if (status == 200) {
+			parsedata.forEach(item => {
+
+				let option_elem = document.createElement('option');
+				option_elem.value = item.departmentId;
+				option_elem.textContent = item.departmentName;
+				ddl_Dept.appendChild(option_elem);
+			});
+
+		}
+
+	}
 </script>
 
 
