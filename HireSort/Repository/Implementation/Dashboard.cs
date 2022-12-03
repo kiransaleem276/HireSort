@@ -1,5 +1,8 @@
-﻿using HireSort.Models;
+﻿using HireSort.Context;
+using HireSort.Helpers;
+using HireSort.Models;
 using HireSort.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Net;
 
@@ -7,43 +10,66 @@ namespace HireSort.Repository.Implementation
 {
     public class Dashboard : IDashboard
     {
+        private readonly HRContext _dbContext;
+        public Dashboard(HRContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public async Task<ApiResponseMessage> GetDepartment(int clientId)
         {
-            List<Department> departmentList = new List<Department>();
-            departmentList.Add(new Department()
+            try
             {
-                DepartmentId = 1,
-                DepartmentName = "Information Technology"
-            });
+                var departmentList = await _dbContext.Departments.Where(w => w.ClientId == clientId && w.IsActive == true).Select(s => new Department()
+                {
+                    DepartmentId = s.DepartmentId,
+                    DepartmentName = s.DepartmentName,
+                }).ToListAsync();
 
-            departmentList.Add(new Department()
+                return CommonHelper.GetApiSuccessResponse(departmentList);
+            }
+            catch (Exception ex)
             {
-                DepartmentId = 2,
-                DepartmentName = "Human Resource"
-            });
-
-            departmentList.Add(new Department()
-            {
-                DepartmentId = 3,
-                DepartmentName = "Finance"
-            });
-            return GetApiSuccessResponse(departmentList);
-
-            //return dt;
-
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
         }
-
-        public static ApiResponseMessage GetApiSuccessResponse(dynamic successData, int statusCode = 0, string message = null)
+        public async Task<ApiResponseMessage> GetVacanciesDepartmentWise(int clientId, int departId)
         {
-            return new ApiResponseMessage()
+            try
             {
-                StatusCode = statusCode == 0 ? Convert.ToInt32(HttpStatusCode.OK) : statusCode,
-                Date = Convert.ToString(DateTime.Now),
-                Message = message,
-                SuccessData = successData,
-                ErrorData = null
-            };
+                var vacancies = await _dbContext.Jobs.Where(w => w.ClientId == clientId && w.DepartmentId == departId && w.IsActive == true).Select(s => new VacanciesDepartmentWise()
+                {
+                    VacancyId = s.JobId,
+                    VacancyName = s.JobName
+                }).ToListAsync();
+                return CommonHelper.GetApiSuccessResponse(vacancies);
+            }
+            catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
         }
 
+        public async Task<ApiResponseMessage> GetDepartAndVacacyDetails(int clientId)
+        {
+            try
+            {
+                var list = await _dbContext.Jobs.Where(w => w.ClientId == clientId && w.IsActive == true && w.Department.IsActive == true).Select(s => new DepartmentAndVacancyList()
+                {
+                    DepertId = s.DepartmentId,
+                    DepartmentName = s.Department.DepartmentName,
+                    VacancyId = s.JobId,
+                    VacancyName = s.JobName
+                }).ToListAsync();
+
+                return CommonHelper.GetApiSuccessResponse(list);
+            }
+            catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
+        }
     }
 }
