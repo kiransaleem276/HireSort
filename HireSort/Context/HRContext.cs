@@ -39,7 +39,7 @@ namespace HireSort.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-VDH112J;Database=HirSort;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-VDH112J;Database=HireSort;Integrated Security=True;MultipleActiveResultSets=True;");
             }
         }
 
@@ -49,9 +49,7 @@ namespace HireSort.Context
             {
                 entity.ToTable("ABOUNT_US");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -61,16 +59,14 @@ namespace HireSort.Context
                     .WithMany(p => p.AbountUs)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ABOUNT_US__CLIEN__2B3F6F97");
+                    .HasConstraintName("FK__ABOUNT_US__CLIEN__2A4B4B5E");
             });
 
             modelBuilder.Entity<Certification>(entity =>
             {
                 entity.ToTable("CERTIFICATION");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CerificateName)
                     .HasMaxLength(100)
@@ -90,16 +86,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Certifications)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CERTIFICA__RESUM__5441852A");
+                    .HasConstraintName("FK__CERTIFICA__RESUM__534D60F1");
             });
 
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.ToTable("CLIENT");
 
-                entity.Property(e => e.ClientId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("CLIENT_ID");
+                entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
                 entity.Property(e => e.ClientName)
                     .HasMaxLength(50)
@@ -120,9 +114,7 @@ namespace HireSort.Context
             {
                 entity.ToTable("CLIENT_HIGHLIGHTS");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Category)
                     .HasMaxLength(50)
@@ -138,16 +130,14 @@ namespace HireSort.Context
                     .WithMany(p => p.ClientHighlights)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CLIENT_HI__CLIEN__33D4B598");
+                    .HasConstraintName("FK__CLIENT_HI__CLIEN__32E0915F");
             });
 
             modelBuilder.Entity<ContactU>(entity =>
             {
                 entity.ToTable("CONTACT_US");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -157,16 +147,14 @@ namespace HireSort.Context
                     .WithMany(p => p.ContactUs)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CONTACT_U__CLIEN__2E1BDC42");
+                    .HasConstraintName("FK__CONTACT_U__CLIEN__2D27B809");
             });
 
             modelBuilder.Entity<Department>(entity =>
             {
                 entity.ToTable("DEPARTMENT");
 
-                entity.Property(e => e.DepartmentId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("DEPARTMENT_ID");
+                entity.Property(e => e.DepartmentId).HasColumnName("DEPARTMENT_ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -188,16 +176,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Departments)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DEPARTMEN__CLIEN__36B12243");
+                    .HasConstraintName("FK__DEPARTMEN__CLIEN__35BCFE0A");
             });
 
             modelBuilder.Entity<Education>(entity =>
             {
                 entity.ToTable("EDUCATION");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Cgpa)
                     .HasMaxLength(20)
@@ -229,16 +215,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Educations)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__EDUCATION__RESUM__48CFD27E");
+                    .HasConstraintName("FK__EDUCATION__RESUM__47DBAE45");
             });
 
             modelBuilder.Entity<Experience>(entity =>
             {
                 entity.ToTable("EXPERIENCE");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CompanyName)
                     .HasMaxLength(100)
@@ -270,16 +254,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Experiences)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__EXPERIENC__RESUM__4BAC3F29");
+                    .HasConstraintName("FK__EXPERIENC__RESUM__4AB81AF0");
             });
 
             modelBuilder.Entity<Home>(entity =>
             {
                 entity.ToTable("HOME");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -293,16 +275,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Homes)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__HOME__CLIENT_ID__30F848ED");
+                    .HasConstraintName("FK__HOME__CLIENT_ID__300424B4");
             });
 
             modelBuilder.Entity<Job>(entity =>
             {
                 entity.ToTable("JOBS");
 
-                entity.Property(e => e.JobId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("JOB_ID");
+                entity.Property(e => e.JobId).HasColumnName("JOB_ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -334,22 +314,20 @@ namespace HireSort.Context
                     .WithMany(p => p.Jobs)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOBS__CLIENT_ID__398D8EEE");
+                    .HasConstraintName("FK__JOBS__CLIENT_ID__38996AB5");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Jobs)
                     .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOBS__DEPARTMENT__3A81B327");
+                    .HasConstraintName("FK__JOBS__DEPARTMENT__398D8EEE");
             });
 
             modelBuilder.Entity<JobCode>(entity =>
             {
                 entity.ToTable("JOB_CODE");
 
-                entity.Property(e => e.JobCodeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("JOB_CODE_ID");
+                entity.Property(e => e.JobCodeId).HasColumnName("JOB_CODE_ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -371,16 +349,14 @@ namespace HireSort.Context
                     .WithMany(p => p.JobCodes)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_CODE__CLIENT__3D5E1FD2");
+                    .HasConstraintName("FK__JOB_CODE__CLIENT__3C69FB99");
             });
 
             modelBuilder.Entity<JobDetail>(entity =>
             {
                 entity.ToTable("JOB_DETAIL");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -404,28 +380,26 @@ namespace HireSort.Context
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__CLIEN__403A8C7D");
+                    .HasConstraintName("FK__JOB_DETAI__CLIEN__3F466844");
 
                 entity.HasOne(d => d.JobCode)
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.JobCodeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__JOB_C__4222D4EF");
+                    .HasConstraintName("FK__JOB_DETAI__JOB_C__412EB0B6");
 
                 entity.HasOne(d => d.Job)
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.JobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__JOB____412EB0B6");
+                    .HasConstraintName("FK__JOB_DETAI__JOB____403A8C7D");
             });
 
             modelBuilder.Entity<Link>(entity =>
             {
                 entity.ToTable("LINKS");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Links)
                     .HasMaxLength(100)
@@ -441,16 +415,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Links)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LINKS__RESUME_ID__5165187F");
+                    .HasConstraintName("FK__LINKS__RESUME_ID__5070F446");
             });
 
             modelBuilder.Entity<Login>(entity =>
             {
                 entity.ToTable("LOGIN");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -476,16 +448,14 @@ namespace HireSort.Context
                     .WithMany(p => p.Logins)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LOGIN__CLIENT_ID__267ABA7A");
+                    .HasConstraintName("FK__LOGIN__CLIENT_ID__276EDEB3");
             });
 
             modelBuilder.Entity<Resume>(entity =>
             {
                 entity.ToTable("RESUME");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
@@ -527,30 +497,28 @@ namespace HireSort.Context
                     .HasMaxLength(50)
                     .HasColumnName("MOBILE_NO");
 
-                entity.Property(e => e.ShortlistedDate)
+                entity.Property(e => e.ShortlistDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("SHORTLISTED_DATE");
+                    .HasColumnName("SHORTLIST_DATE");
 
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Resumes)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RESUME__IS_SHORT__44FF419A");
+                    .HasConstraintName("FK__RESUME__IS_SHORT__440B1D61");
 
                 entity.HasOne(d => d.Job)
                     .WithMany(p => p.Resumes)
                     .HasForeignKey(d => d.JobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RESUME__JOB__ID__45F365D3");
+                    .HasConstraintName("FK__RESUME__JOB__ID__44FF419A");
             });
 
             modelBuilder.Entity<TechnicalSkill>(entity =>
             {
                 entity.ToTable("TECHNICAL_SKILLS");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Duration).HasColumnName("DURATION");
 
@@ -564,7 +532,7 @@ namespace HireSort.Context
                     .WithMany(p => p.TechnicalSkills)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TECHNICAL__RESUM__4E88ABD4");
+                    .HasConstraintName("FK__TECHNICAL__RESUM__4D94879B");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -13,7 +13,9 @@ namespace HireSort.Helpers
             SovrenClient client = new SovrenClient("20835745", "yFiS3NpVVHhDgxOBYcVKN0oaL3INlIu3L2lwrPwa", DataCenter.US);
 
             //A Document is an unparsed File (PDF, Word Doc, etc)
-            Document doc = new Document("resume.pdf");
+            //Document doc = new Document("resume2.pdf");
+            Document doc = new Document("resume8.pdf");
+            //Document doc = new Document("resume3.docx");
 
             //when you create a ParseRequest, you can specify many configuration settings
             //in the ParseOptions. See https://sovren.com/technical-specs/latest/rest-api/resume-parser/api/
