@@ -16,9 +16,9 @@ namespace HireSort.Controllers
 
         [HttpGet]
         [Route("resume-content")]
-        public async Task<string> GetResumeContent([FromQuery] string resumeName)
+        public async Task<string> GetResumeContent([FromQuery] int jobId)
         {
-            return await _resumeParsing.resumeContent(resumeName);
+            return await _resumeParsing.resumeContent(jobId);
         }
 
     }

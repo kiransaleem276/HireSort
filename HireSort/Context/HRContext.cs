@@ -527,6 +527,10 @@ namespace HireSort.Context
                     .HasMaxLength(50)
                     .HasColumnName("MOBILE_NO");
 
+                entity.Property(e => e.ShortlistedDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("SHORTLISTED_DATE");
+
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Resumes)
                     .HasForeignKey(d => d.ClientId)
