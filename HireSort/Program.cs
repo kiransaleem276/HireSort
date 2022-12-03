@@ -1,7 +1,14 @@
 using HireSort.Dependencies;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using HireSort.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//builder.Services.AddDbContext<DbCo>(optiopns)
+builder.Services.AddDbContext<HRContext>(options =>
+           options.UseSqlServer(
+               builder.Configuration.GetConnectionString("HRdb")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 //Dependencies List
