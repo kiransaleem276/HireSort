@@ -1,256 +1,324 @@
 ﻿@{
-	ViewData["Title"] = "Home";
+ViewData["Title"] = "Home";
 }
 
 
 <!-- Carousel Start -->
 <div class="container-fluid p-0">
-	<div class="owl-carousel header-carousel position-relative">
-		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/carousel-1.jpg" alt="">
-			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-				<div class="container">
-					<div class="row justify-content-start">
-						<div class="col-10 col-lg-8">
-							<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
-							<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
-							@* <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Add New Job</a>*@
-							<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/carousel-2.jpg" alt="">
-			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-				<div class="container">
-					<div class="row justify-content-start">
-						<div class="col-10 col-lg-8">
-							<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
-							<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
-							@*<a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"  asp-area="" asp-controller="Home" asp-action="AddNewJob">Add New Job</a>*@
-							<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>
-						</div>
+<div class="owl-carousel header-carousel position-relative">
+	<div class="owl-carousel-item position-relative">
+		<img class="img-fluid" src="img/carousel-1.jpg" alt="">
+		<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+			<div class="container">
+				<div class="row justify-content-start">
+					<div class="col-10 col-lg-8">
+						<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
+						<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
+						@* <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Add New Job</a>*@
+						<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="owl-carousel-item position-relative">
+		<img class="img-fluid" src="img/carousel-2.jpg" alt="">
+		<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+			<div class="container">
+				<div class="row justify-content-start">
+					<div class="col-10 col-lg-8">
+						<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
+						<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
+						@*<a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"  asp-area="" asp-controller="Home" asp-action="AddNewJob">Add New Job</a>*@
+						<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 <!-- Carousel End -->
 <!-- Search Start -->
 <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-	<div class="container">
-		<div class="row g-2">
-			<div class="col-md-10">
-				<div class="row g-2">
+<div class="container">
+	<div class="row g-2">
+		<div class="col-md-10">
+			<div class="row g-2">
 					
-					<div class="col-md-5">
-						<select id="department" name="department" class="form-select border-0">
-							<!--<option selected>Department</option>
-							<option value="1">Development (IT)</option>
-							<option value="2">Human Resource</option>
-							<option value="3">Finance</option>-->
-						</select>
-					</div>
-					<div class="col-md-5">
-						<select id="vacancy" name="vacancy" class="form-select border-0">
-							@*<option selected>Vacancies</option>
-							<option value="1">Web Developer</option>
-							<option value="2">Web Designer</option>
-							<option value="3">Finance</option>*@
-						</select>
-					</div>
+				<div class="col-md-5">
+					<select id="department" name="department" class="form-select border-0">
+						<!--<option selected>Department</option>
+						<option value="1">Development (IT)</option>
+						<option value="2">Human Resource</option>
+						<option value="3">Finance</option>-->
+					</select>
+				</div>
+				<div class="col-md-5">
+					<select id="vacancy" name="vacancy" class="form-select border-0">
+						@*<option selected>Vacancies</option>
+						<option value="1">Web Developer</option>
+						<option value="2">Web Designer</option>
+						<option value="3">Finance</option>*@
+					</select>
 				</div>
 			</div>
-			<div class="col-md-2">
-				<button class="btn btn-dark border-0 w-100">Search</button>
-			</div>
+		</div>
+		<div class="col-md-2">
+			<button class="btn btn-dark border-0 w-100">Search</button>
 		</div>
 	</div>
+</div>
 </div>
 <!-- Search End -->
 <!-- Category Start -->
 <div class="container-xxl py-5">
-	<div class="container">
-		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Find By Vacancy</h1>
-		<div class="row">
-			<div class="col-lg-12">
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th scope="col">S No.</th>
-							<th scope="col">Departments</th>
-							<th scope="col">Job Vacancies</th>
-							<th scope="col">Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Development (IT)</td>
-							<td>Web Developer</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Human Resource</td>
-							<td>Associate HR</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Finance</td>
-							<td>Finance Manager</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-
-						<tr>
-							<th scope="row">4</th>
-							<td>Development (IT)</td>
-							<td>Web Developer</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">5</th>
-							<td>Human Resource</td>
-							<td>Associate HR</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">6</th>
-							<td>Finance</td>
-							<td>Finance Manager</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">7</th>
-							<td>Development (IT)</td>
-							<td>Web Developer</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">8</th>
-							<td>Human Resource</td>
-							<td>Associate HR</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-						<tr>
-							<th scope="row">9</th>
-							<td>Finance</td>
-							<td>Finance Manager</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
+<div class="container">
+	<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Find By Vacancy</h1>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-hover table-striped" id="tbl_vacancyList">
+				<thead>
+					<tr>
+						<th scope="col">S No.</th>
+						<th scope="col">Departments</th>
+						<th scope="col">Job Vacancies</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				@*	<tr>
+						<th scope="row">1</th>
+						<td>Development (IT)</td>
+						<td>Web Developer</td>
+						<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
+					</tr>*@
+						
+				</tbody>
+			</table>
 		</div>
+
 	</div>
+</div>
 </div>
 <!-- Category End -->
 <!-- Category Start -->
 <div class="container-xxl py-5">
-	<div class="container">
-		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Explore By Department</h1>
-		<div class="row g-4">
-			<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
-				<a class="cat-item rounded p-4" href="">
-					<i class="fa fa-3x fa-tasks text-primary mb-4"></i>
-					<h6 class="mb-3">Project Management</h6>
-					<p class="mb-0">123 Vacancy</p>
-				</a>
+<div class="container">
+	<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Explore By Department</h1>
+	<div class="row g-4">
+		<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
+				<div class="cat-item rounded p-4" id="vacancy_Count">
+				<i class="fa fa-3x fa-tasks text-primary mb-4"></i>
+				<h6 class="mb-3">Project Management</h6>
+					<a href=""><p class="mb-0">123 Vacancy</p></a>
 			</div>
-
-			<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-				<a class="cat-item rounded p-4" href="">
-					<i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-					<h6 class="mb-3">Human Resource</h6>
-					<p class="mb-0">123 Vacancy</p>
-				</a>
-			</div>
-
-			<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-				<a class="cat-item rounded p-4" href="">
-					<i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
-					<h6 class="mb-3">Information Technology</h6>
-					<p class="mb-0">123 Vacancy</p>
-				</a>
-			</div>
-
-
-
 		</div>
+
+		@*<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+			<div class="cat-item rounded p-4" href="">
+				<i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
+				<h6 class="mb-3">Human Resource</h6>
+					<a href="" class="vacancy_Count"><p class="mb-0">123 Vacancy</p></a>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+			<div class="cat-item rounded p-4" href="">
+				<i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
+				<h6 class="mb-3">Information Technology</h6>
+					<a href="" class="vacancy_Count"><p class="mb-0">123 Vacancy</p></a>
+			</div>*@
+		</div>
+
+
+
 	</div>
+</div>
 </div>
 <!-- Category End -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	   const uriDept = 'api/Dashboard/departments';
-	const uriVacancy = 'api/Dashboard/vacancies-department-wise?departId=1';
-	   //const uri = 'api/Home/departments?clientId=1';
+	const uriDept = 'api/Dashboard/departments';
+    const uriVacancy = 'api/Dashboard/vacancies-department-wise?departId=1';
+	const uriVacancyList = 'api/Dashboard/department-and-vacancies-details';
+	const uriVacancyCount = 'api/Dashboard/depart-vacancy-count';
 
-	$(document).ready(function() {
-		getDepartments();
-		 getVacancies();
-	});
+$(document).ready(function() {
+	getItemsDept();
+	getItemsVacancy();
+	getItemsVacancyList();
+		getItemsVacancyCount();
+});
 
-	   function getDepartments() {
-		 fetch(uriDept)
-		   .then(response => response.json())
-			.then(data => _displayItemsDepartment(data))
-		   .catch(error => console.error('Unable to get items.', error));
-	   }
+// Get Department Dropdown
+function getItemsDept() {
+	fetch(uriDept)
+		.then(response => response.json())
+		.then(data => _displayItemsDept(data))
+		.catch(error => console.error('Unable to get items.', error));
+	}
+function _displayItemsDept(data) {
 
-	   function _displayItemsDepartment(data) {
+		debugger;
+		const ddl_Dept = document.getElementById('department');
 
-		   debugger;
-		 const ddl_Dept = document.getElementById('department');
+	var status =data.statusCode
+		var parsedata=data.successData
+		if(status==200)
+	{ parsedata.forEach(item => {
 
-		var status =data.statusCode
-		 var parsedata=data.successData
-		 if(status==200)
-		{ parsedata.forEach(item => {
+		let option_elem = document.createElement('option');
+			option_elem.value = item.departmentId;
+			option_elem.textContent = item.departmentName;
+		ddl_Dept.appendChild(option_elem);
+		});
 
-		 let option_elem = document.createElement('option');
-			   option_elem.value = item.departmentId;
-			   option_elem.textContent = item.departmentName;
-		 ddl_Dept.appendChild(option_elem);
-		 });
-
-		}
-
-	   }
-
-
-	function getVacancies() {
-		fetch(uriVacancy)
-			.then(response => response.json())
-			.then(data => _displayItemsVacancy(data))
-			.catch(error => console.error('Unable to get items.', error));
+		//$("option").each(function (index) {
+		//	$(this).on("click", function () {
+		//		alert("hello")
+		//	});
+		//});
 	}
 
-	function _displayItemsVacancy(data) {
+	}
+
+// Get Vacancy Dropdown
+function getItemsVacancy() {
+	fetch(uriVacancy)
+		.then(response => response.json())
+		.then(data => _displayItemsVacancy(data))
+		.catch(error => console.error('Unable to get items.', error));
+	}
+function _displayItemsVacancy(data) {
 
 		debugger;
 		const ddl_Dept = document.getElementById('vacancy');
+
+	var status =data.statusCode
+		var parsedata=data.successData
+		if(status==200)
+	{ parsedata.forEach(item => {
+
+		let option_elem = document.createElement('option');
+			option_elem.value = item.vacancyId;
+			option_elem.textContent = item.vacancyName;
+		ddl_Dept.appendChild(option_elem);
+		});
+
+	}
+
+	}
+
+//Get Department and Vacancy List
+function getItemsVacancyList() {
+		fetch(uriVacancyList)
+		.then(response => response.json())
+		.then(data => _displayItemsVacancyList(data))
+		.catch(error => console.error('Unable to get items.', error));
+}
+function _displayItemsVacancyList(data) {
+
+	debugger;
+		const tbl_vacancyList = document.getElementById('tbl_vacancyList');
+
+	var status = data.statusCode
+	var parsedata = data.successData
+	if (status == 200) {
+		parsedata.forEach(item => {
+
+
+
+				let tr = document.createElement('tr');
+
+			    let td1 = document.createElement('td');
+			    let td2 = document.createElement('td');
+				let td3 = document.createElement('td');
+				let td4 = document.createElement('td');
+
+				td1.textContent = "1";
+				td2.textContent = item.departmentName;
+				td3.textContent = item.vacancyName;
+			
+				let btnViewAllResume = document.createElement('a');
+				let textViewAllResume = document.createTextNode("View All Resume");
+				btnViewAllResume.href = "https://www.google.com";
+				btnViewAllResume.appendChild(textViewAllResume);
+
+				td4.appendChild(btnViewAllResume);
+				
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				tr.appendChild(td3);
+				tr.appendChild(td4);
+				tbl_vacancyList.appendChild(tr);
+		});
+
+	}
+
+
+}
+
+//Get Department and Vacancy Count
+	function getItemsVacancyCount(){
+		fetch(uriVacancyCount)
+			.then(response => response.json())
+			.then(data => _displayItemsVacancyCount(data))
+			.catch(error => console.error('Unable to get items.', error));
+	}
+	function _displayItemsVacancyCount(data) {
+
+		debugger;
+		const vacancyCount = document.getElementById('vacancy_Count');
 
 		var status = data.statusCode
 		var parsedata = data.successData
 		if (status == 200) {
 			parsedata.forEach(item => {
 
-				let option_elem = document.createElement('option');
-				option_elem.value = item.departmentId;
-				option_elem.textContent = item.departmentName;
-				ddl_Dept.appendChild(option_elem);
+				let icon = document.createElement('i');
+				// ✅ Add classes to element
+				icon.classList.add('fa', 'fa-3x','fa-tasks', 'text-primary','mb-4');
+
+				let departmentTitle = document.createElement('h6');
+
+				departmentTitle.classList.add('mb-3');
+				departmentTitle.textContent = item.departmentName;
+				let btnVacancyCount = document.createElement('a');
+				btnVacancyCount.href = "https://www.google.com";
+
+				let lblVacancyCount = document.createElement('p');
+
+				lblVacancyCount.classList.add('mb-0');
+				lblVacancyCount.textContent = item.vacancyCounts;
+				btnVacancyCount.appendChild(lblVacancyCount);
+
+
+				vacancyCount.appendChild(icon);
+				vacancyCount.appendChild(departmentTitle);
+				vacancyCount.appendChild(btnVacancyCount);
 			});
 
 		}
 
+
 	}
 </script>
 
+<style>
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		border: 1px solid #ddd;
+	}
+	th, td {
+		text-align: left;
+		padding: 10px 5px 10px 5px;
+	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
 
+</style>
