@@ -27,7 +27,7 @@ namespace HireSort.Controllers
             return Ok(response);
 
         }
-
+        
         [HttpGet]
         [Route("vacancies-department-wise")]
         public async Task<IActionResult> GetVacanciesDepartmentWise([FromQuery] int clientId, int departId)
