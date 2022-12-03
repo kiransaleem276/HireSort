@@ -8,7 +8,7 @@ namespace HireSort.Helpers
 {
     public class ResumeParsingHelper
     {
-        public async static Task<string> ContactInfo()
+        public async static Task<ParseResumeResponse> ResumeParse()
         {
             SovrenClient client = new SovrenClient("20835745", "yFiS3NpVVHhDgxOBYcVKN0oaL3INlIu3L2lwrPwa", DataCenter.US);
 
@@ -24,7 +24,8 @@ namespace HireSort.Helpers
                 //if we get here, it was 200-OK and all operations succeeded
 
                 //now we can use the response from Sovren to output some of the data from the resume
-               return PrintBasicResumeInfo(response);
+                return response;
+                //return PrintBasicResumeInfo(response);
             }
             catch (SovrenException e)
             {
@@ -41,6 +42,7 @@ namespace HireSort.Helpers
             //PrintWorkHistory(response.Value);
             //PrintEducation(response.Value);
         }
+
         private static string PrintContactInfo(ParseResumeResponse response)
         {
             string contactInfo = string.Empty;

@@ -42,6 +42,27 @@ namespace HireSort.Controllers
             var response = await _dashboard.GetDepartAndVacacyDetails(departId, vacancyId);
             return Ok(response);
         }
+        [HttpGet]
+        [Route("resume-list")]
+        public async Task<IActionResult> GetDepartAndVacancyDetails([FromQuery] int departId, int vacancyId, bool isShortListedResume = false)
+        {
+            var response = await _dashboard.GetAllResumes(departId, vacancyId, isShortListedResume);
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("depart-vacancy-count")]
+        public async Task<IActionResult> GetDepartmentVacancyCount()
+        {
+            var response = await _dashboard.GetDepartmentVacancyCount();
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("depart-vacancy-list")]
+        public async Task<IActionResult> GetDepartmentJobs([FromQuery] int departId)
+        {
+            var response = await _dashboard.GetDepartmentJobs(departId);
+            return Ok(response);
+        }
 
     }
 }
