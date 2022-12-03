@@ -21,25 +21,25 @@ namespace HireSort.Controllers
 
         [HttpGet]
         [Route("departments")]
-        public async Task<IActionResult> GetDepartment([FromQuery] int clientId)
+        public async Task<IActionResult> GetDepartment()
         {
-            var response = await _dashboard.GetDepartment(clientId);
+            var response = await _dashboard.GetDepartment();
             return Ok(response);
 
         }
         
         [HttpGet]
         [Route("vacancies-department-wise")]
-        public async Task<IActionResult> GetVacanciesDepartmentWise([FromQuery] int clientId, int departId)
+        public async Task<IActionResult> GetVacanciesDepartmentWise([FromQuery] int departId)
         {
-            var response = await _dashboard.GetVacanciesDepartmentWise(clientId, departId);
+            var response = await _dashboard.GetVacanciesDepartmentWise(departId);
             return Ok(response);
         }
         [HttpGet]
         [Route("department-and-vacancies-details")]
-        public async Task<IActionResult> GetDepartAndVacancyDetails([FromQuery] int clientId)
+        public async Task<IActionResult> GetDepartAndVacancyDetails([FromQuery] int departId, int vacancyId)
         {
-            var response = await _dashboard.GetDepartAndVacacyDetails(clientId);
+            var response = await _dashboard.GetDepartAndVacacyDetails(departId, vacancyId);
             return Ok(response);
         }
 

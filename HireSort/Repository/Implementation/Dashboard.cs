@@ -10,12 +10,13 @@ namespace HireSort.Repository.Implementation
 {
     public class Dashboard : IDashboard
     {
+        private int clientId = 1;
         private readonly HRContext _dbContext;
         public Dashboard(HRContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<ApiResponseMessage> GetDepartment(int clientId)
+        public async Task<ApiResponseMessage> GetDepartment()
         {
             try
             {
@@ -33,7 +34,7 @@ namespace HireSort.Repository.Implementation
                 return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
             }
         }
-        public async Task<ApiResponseMessage> GetVacanciesDepartmentWise(int clientId, int departId)
+        public async Task<ApiResponseMessage> GetVacanciesDepartmentWise(int departId)
         {
             try
             {
@@ -51,18 +52,26 @@ namespace HireSort.Repository.Implementation
             }
         }
 
-        public async Task<ApiResponseMessage> GetDepartAndVacacyDetails(int clientId)
+        public async Task<ApiResponseMessage> GetDepartAndVacacyDetails(int departId = 0, int vacancyId = 0)
         {
             try
             {
-                var list = await _dbContext.Jobs.Where(w => w.ClientId == clientId && w.IsActive == true && w.Department.IsActive == true).Select(s => new DepartmentAndVacancyList()
+                var list = _dbContext.Jobs.Where(w => w.ClientId == clientId && w.IsActive == true && w.Department.IsActive == true).Select(s => new DepartmentAndVacancyList()
                 {
                     DepertId = s.DepartmentId,
                     DepartmentName = s.Department.DepartmentName,
                     VacancyId = s.JobId,
                     VacancyName = s.JobName
-                }).ToListAsync();
+                });
 
+                if (departId > 0)
+                {
+                    list = list.Where(w => w.DepertId == departId);
+                }
+                if (vacancyId > 0)
+                {
+                    list = list.Where(w => w.VacancyId == vacancyId);
+                }
                 return CommonHelper.GetApiSuccessResponse(list);
             }
             catch (Exception ex)
