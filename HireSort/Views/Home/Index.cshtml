@@ -46,15 +46,15 @@ ViewData["Title"] = "Home";
 		<div class="col-md-10">
 			<div class="row g-2">
 					
-				<div class="col-md-5">
-					<select id="department" name="department" class="form-select border-0">
+				<div class="col-md-6">
+					<select id="department" name="department" class="form-select border-0" onchange="myFunction()">
 						<!--<option selected>Department</option>
 						<option value="1">Development (IT)</option>
 						<option value="2">Human Resource</option>
 						<option value="3">Finance</option>-->
 					</select>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<select id="vacancy" name="vacancy" class="form-select border-0">
 						@*<option selected>Vacancies</option>
 						<option value="1">Web Developer</option>
@@ -106,14 +106,14 @@ ViewData["Title"] = "Home";
 <div class="container-xxl py-5">
 <div class="container">
 	<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Explore By Department</h1>
-	<div class="row g-4">
-		<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
-				<div class="cat-item rounded p-4" id="vacancy_Count">
+		<div class="row g-4" id="vacancy_Count">
+		@*	<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
+				<div class="cat-item rounded p-4" >
 				<i class="fa fa-3x fa-tasks text-primary mb-4"></i>
 				<h6 class="mb-3">Project Management</h6>
 					<a href=""><p class="mb-0">123 Vacancy</p></a>
 			</div>
-		</div>
+		</div>*@
 
 		@*<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
 			<div class="cat-item rounded p-4" href="">
@@ -135,7 +135,7 @@ ViewData["Title"] = "Home";
 
 	</div>
 </div>
-</div>
+
 <!-- Category End -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -211,6 +211,8 @@ function _displayItemsVacancy(data) {
 
 	}
 
+	
+
 //Get Department and Vacancy List
 function getItemsVacancyList() {
 		fetch(uriVacancyList)
@@ -243,7 +245,7 @@ function _displayItemsVacancyList(data) {
 			
 				let btnViewAllResume = document.createElement('a');
 				let textViewAllResume = document.createTextNode("View All Resume");
-				btnViewAllResume.href = "https://www.google.com";
+				btnViewAllResume.href = "ViewAllResume/ViewAllResume";
 				btnViewAllResume.appendChild(textViewAllResume);
 
 				td4.appendChild(btnViewAllResume);
@@ -277,32 +279,78 @@ function _displayItemsVacancyList(data) {
 		if (status == 200) {
 			parsedata.forEach(item => {
 
+				let divCard = document.createElement('div');
+				divCard.classList.add('col-lg-4' ,'col-sm-6', 'wow', 'fadeInUp');
+				divCard.setAttribute('style', 'visibility: visible; animation - delay: 0.7s; animation - name: fadeInUp;');
+
+				let divMain = document.createElement('div');
+				divMain.classList.add('cat-item', 'rounded', 'p-4');
+
 				let icon = document.createElement('i');
-				// ✅ Add classes to element
-				icon.classList.add('fa', 'fa-3x','fa-tasks', 'text-primary','mb-4');
+				//icon.classList.add('fa', 'fa-3x','fa-tasks', 'text-primary','mb-4');
+
+				if(item.departmentName == "Project Management"){
+					icon.classList.add('fa', 'fa-3x','fa-tasks', 'text-primary','mb-4');
+				}
+
+				else if (item.departmentName == "Human Resource"){
+					icon.classList.add('fa', 'fa-3x', 'fa-user-tie', 'text-primary', 'mb-4');
+				}
+
+				else if (item.departmentName == "Information Technology") {
+					icon.classList.add('fa', 'fa-3x', 'fa-chart-line', 'text-primary', 'mb-4');
+				}
+
+
+				else if (item.departmentName == "Finance") {
+					icon.classList.add('fa', 'fa-3x', 'fa-money-check-alt', 'text-primary', 'mb-4');
+				}
+
+
 
 				let departmentTitle = document.createElement('h6');
-
 				departmentTitle.classList.add('mb-3');
 				departmentTitle.textContent = item.departmentName;
+
 				let btnVacancyCount = document.createElement('a');
-				btnVacancyCount.href = "https://www.google.com";
+				btnVacancyCount.href = "ViewDeptVacancy/ViewDeptVacancy";
 
 				let lblVacancyCount = document.createElement('p');
-
 				lblVacancyCount.classList.add('mb-0');
 				lblVacancyCount.textContent = item.vacancyCounts;
+
 				btnVacancyCount.appendChild(lblVacancyCount);
 
-
-				vacancyCount.appendChild(icon);
-				vacancyCount.appendChild(departmentTitle);
-				vacancyCount.appendChild(btnVacancyCount);
+				divMain.appendChild(icon);
+				divMain.appendChild(departmentTitle);
+				divMain.appendChild(btnVacancyCount);
+				divCard.appendChild(divMain);
+				vacancyCount.appendChild(divCard);
+				
 			});
 
 		}
 
 
+	}
+
+	function myFunction() {
+		var input, filter, table, tr, td, i;
+		input = document.getElementById("department");
+		filter = input.value;
+		alert(filter);
+		table = document.getElementById("tbl_vacancyList");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				if (td.innerHTML.indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
 	}
 </script>
 
@@ -316,9 +364,17 @@ function _displayItemsVacancyList(data) {
 	th, td {
 		text-align: left;
 		padding: 10px 5px 10px 5px;
+		
 	}
 	tr:nth-child(even) {
 		background-color: #f2f2f2;
 	}
 
+	tr{
+		transition: 0.3s ease-in-out;
+	}
+
+	tr:hover{
+		background-color: #deebfc;
+	}
 </style>
