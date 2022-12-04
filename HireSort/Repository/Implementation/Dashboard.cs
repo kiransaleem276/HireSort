@@ -102,7 +102,7 @@ namespace HireSort.Repository.Implementation
                         MobileNo = s.MobileNo,
                         EmailAddress = s.Email,
                         IsShortListed = s.IsShortlisted,
-                        ShortListedDate = (s.ShortlistedDate != null) ? Convert.ToDateTime(s.ShortlistedDate).ToString(_dateFormat) : null
+                        ShortListedDate = (s.ShortlistDate != null) ? Convert.ToDateTime(s.ShortlistDate).ToString(_dateFormat) : null
                     });
 
                     if (isShortListedResume)

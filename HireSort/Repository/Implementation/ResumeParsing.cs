@@ -29,9 +29,9 @@ namespace HireSort.Repository.Implementation
                     resume.JobId = jobId;
                     resume.ClientId = clientId;
                     resume.FirstName = parseResponse.EasyAccess().GetCandidateName()?.GivenName + " " + parseResponse.EasyAccess().GetCandidateName()?.MiddleName;
-                    resume.LastName = parseResponse.EasyAccess().GetCandidateName()?.FamilyName;
-                    resume.Email = parseResponse.EasyAccess().GetEmailAddresses()?.FirstOrDefault();
-                    resume.MobileNo = parseResponse.EasyAccess().GetPhoneNumbers()?.FirstOrDefault();
+                    resume.LastName = parseResponse.EasyAccess().GetCandidateName()?.FamilyName ?? "";
+                    resume.Email = parseResponse.EasyAccess().GetEmailAddresses()?.FirstOrDefault() ?? "";
+                    resume.MobileNo = parseResponse.EasyAccess().GetPhoneNumbers()?.FirstOrDefault() ?? "";
                     resume.Cnic = parseResponse.EasyAccess().GetNationalIdentities()?.Select(s => s.Number).FirstOrDefault() ?? "";
                     resume.File = "file";
                     resume.FileName = "fileName";
@@ -46,17 +46,18 @@ namespace HireSort.Repository.Implementation
                     {
                         foreach (var job in parseResponse.Value.ResumeData.EmploymentHistory.Positions)
                         {
+                            //if(job.StartDate!=null || job.EndDate != null)
                             //years  
                             int Years = job.EndDate.Date.Year - job.StartDate.Date.Year;
-                            int month = job.EndDate.Date.Month - job.EndDate.Date.Month;
+                            int month = job.EndDate.Date.Month - job.StartDate.Date.Month;
                             int TotalMonths = (Years * 12) + month;
 
                             workHistory.Add(new Experience()
                             {
                                 ResumeId = resumeId,
-                                CompanyName = job.Employer?.Name?.Normalized,
+                                CompanyName = job.Employer?.Name?.Normalized ?? "",
                                 Responsibility = job.Description,
-                                Designation = job.JobTitle?.Normalized,
+                                Designation = job.JobTitle?.Normalized ?? "",
                                 TotalExperience = TotalMonths,
                                 StartDate = job.StartDate.Date,
                                 EndDate = job.EndDate.Date,
