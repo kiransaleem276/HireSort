@@ -67,12 +67,15 @@ namespace HireSort.Repository.Implementation
                     VacancyId = s.JobId,
                     VacancyName = s.JobName
                 });
-
-                if (departId > 0)
+                if (departId > 0 && vacancyId > 0)
+                {
+                    list = list.Where(w => w.DepertId == departId && w.VacancyId == vacancyId);
+                }
+                else if (departId > 0)
                 {
                     list = list.Where(w => w.DepertId == departId);
                 }
-                if (vacancyId > 0)
+                else if (vacancyId > 0)
                 {
                     list = list.Where(w => w.VacancyId == vacancyId);
                 }
