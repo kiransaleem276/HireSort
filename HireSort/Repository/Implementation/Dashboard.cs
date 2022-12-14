@@ -75,7 +75,7 @@ namespace HireSort.Repository.Implementation
                 {
                     list = list.Where(w => w.DepertId == departId);
                 }
-                else if (vacancyId > 0)
+                 else if (vacancyId > 0)
                 {
                     list = list.Where(w => w.VacancyId == vacancyId);
                 }

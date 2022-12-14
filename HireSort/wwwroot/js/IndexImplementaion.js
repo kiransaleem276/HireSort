@@ -63,7 +63,7 @@ $("#btn_Search").click(function myfunction() {
     var dpt_id = ddl_Dept.value;
     var vac_Id = ddl_Vac.val();
 
-    alert("Handler for .change() called." + ` with ids dept: ${dpt_id} and vacId: ${vac_Id}`);
+    //alert("Handler for .change() called." + ` with ids dept: ${dpt_id} and vacId: ${vac_Id}`);
 
 
     //fetch(uri, {
@@ -74,7 +74,7 @@ $("#btn_Search").click(function myfunction() {
     //    },
     //    body: JSON.stringify(item)
     //})
-    var filteredVacList = `api/Dashboard/department-and-vacancies-details?departId=${dpt_id}&vacancyId${vac_Id}`
+    var filteredVacList = `api/Dashboard/department-and-vacancies-details?departId=${dpt_id}&vacancyId=${vac_Id}`
 
     fetch(filteredVacList)
         .then(response => response.json())
@@ -228,7 +228,7 @@ function _displayItemsVacancyList(data) {
         parsedata.forEach(item => {
 
 
-debugger
+            debugger
             let tr = document.createElement('tr');
 
             let td1 = document.createElement('td');
