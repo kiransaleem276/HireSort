@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using HireSort.Entities.DbModels;
+using HireSort.Entity.DbModels;
 
 namespace HireSort.Context
 {
@@ -209,7 +209,7 @@ namespace HireSort.Context
 
                 entity.Property(e => e.StartDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("START_DATE");
+                    .HasColumnName("Start_Date");
 
                 entity.HasOne(d => d.Resume)
                     .WithMany(p => p.Educations)
@@ -460,7 +460,7 @@ namespace HireSort.Context
                 entity.Property(e => e.ClientId).HasColumnName("CLIENT_ID");
 
                 entity.Property(e => e.Cnic)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("CNIC");
 
                 entity.Property(e => e.Compatibility)
@@ -468,7 +468,7 @@ namespace HireSort.Context
                     .HasColumnName("COMPATIBILITY");
 
                 entity.Property(e => e.Email)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("EMAIL");
 
                 entity.Property(e => e.File).HasColumnName("FILE");
@@ -482,7 +482,7 @@ namespace HireSort.Context
                     .HasColumnName("FILE_NAME");
 
                 entity.Property(e => e.FirstName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("FIRST_NAME");
 
                 entity.Property(e => e.IsShortlisted).HasColumnName("IS_SHORTLISTED");
@@ -490,11 +490,11 @@ namespace HireSort.Context
                 entity.Property(e => e.JobId).HasColumnName("JOB__ID");
 
                 entity.Property(e => e.LastName)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("LAST_NAME");
 
                 entity.Property(e => e.MobileNo)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("MOBILE_NO");
 
                 entity.Property(e => e.ShortlistDate)
@@ -505,13 +505,13 @@ namespace HireSort.Context
                     .WithMany(p => p.Resumes)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RESUME__IS_SHORT__440B1D61");
+                    .HasConstraintName("FK__RESUME__CLIENT_I__5BE2A6F2");
 
                 entity.HasOne(d => d.Job)
                     .WithMany(p => p.Resumes)
                     .HasForeignKey(d => d.JobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RESUME__JOB__ID__44FF419A");
+                    .HasConstraintName("FK__RESUME__JOB__ID__5CD6CB2B");
             });
 
             modelBuilder.Entity<TechnicalSkill>(entity =>

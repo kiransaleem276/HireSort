@@ -11,10 +11,12 @@
     public class Resumes
     {
         public int ResumeID { get; set; }
+        public int JobId { get; set; }
         public string? CandidateName { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailAddress { get; set; }
         public bool? IsShortListed { get; set; }
         public string? ShortListedDate { get; set; }
+        public bool? IsFileParsed { get; set; }
     }
 }

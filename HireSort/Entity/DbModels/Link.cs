@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HireSort.Entities.DbModels
+namespace HireSort.Entity.DbModels
 {
     public partial class Link
     {

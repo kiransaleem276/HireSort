@@ -8,13 +8,13 @@ namespace HireSort.Helpers
 {
     public class ResumeParsingHelper
     {
-        public async static Task<ParseResumeResponse> ResumeParse()
+        public async static Task<ParseResumeResponse> ResumeParse(string filePath)
         {
             SovrenClient client = new SovrenClient("20835745", "yFiS3NpVVHhDgxOBYcVKN0oaL3INlIu3L2lwrPwa", DataCenter.US);
 
             //A Document is an unparsed File (PDF, Word Doc, etc)
             //Document doc = new Document("resume2.pdf");
-            Document doc = new Document("resume8.pdf");
+            Document doc = new Document(filePath);
             //Document doc = new Document("resume3.docx");
 
             //when you create a ParseRequest, you can specify many configuration settings
