@@ -101,6 +101,7 @@ namespace HireSort.Repository.Implementation
                     var resumes = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == vacancyId && w.Job.DepartmentId == departId).Select(s => new Resumes()
                     {
                         ResumeID = s.Id,
+                        JobId= s.JobId,
                         CandidateName = (s.IsFileParsed == true) ? s.FirstName + " " + s.LastName : s.FileName,
                         MobileNo = s.MobileNo,
                         EmailAddress = s.Email,
