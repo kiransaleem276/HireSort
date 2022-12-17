@@ -1,27 +1,46 @@
 ﻿using HireSort.Models;
+using HireSort.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-    public class ViewAllResumeController : Controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ViewAllResumeController : ControllerBase
     {
-        private readonly ILogger<ViewAllResumeController> _logger;
+        private readonly IResumeParsing _resumeParsing;
 
-        public ViewAllResumeController(ILogger<ViewAllResumeController> logger)
+        //private readonly ILogger<HomeController> _logger;
+
+        public ViewAllResumeController(IResumeParsing resumeParsing)
         {
-            _logger = logger;
+            _resumeParsing = resumeParsing;
         }
 
-        public IActionResult ViewAllResume()
-        {
-            return View();
-        }
+        //public IActionResult ViewAllResume()
+        //{
+        //    return View();
+        //}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
+        [HttpPost]
+        [Route("uploadfile")]
+
+        public Task UploadFiles(IFormFile file,int jobId)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            //foreach (IFormFile file in files)
+            //{
+            if (file.Length > 0)
+            {
+                var result = _resumeParsing.ResumeUpload(file, jobId);
+            }
+            return Task.CompletedTask;
         }
     }
 }

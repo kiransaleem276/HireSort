@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HireSort.Entities.DbModels
+namespace HireSort.Entity.DbModels
 {
     public partial class Education
     {
@@ -10,9 +10,9 @@ namespace HireSort.Entities.DbModels
         public string InstituteName { get; set; } = null!;
         public string DegreeName { get; set; } = null!;
         public string Cgpa { get; set; } = null!;
-        public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public virtual Resume Resume { get; set; } = null!;
     }

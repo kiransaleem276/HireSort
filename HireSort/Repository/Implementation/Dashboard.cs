@@ -75,7 +75,7 @@ namespace HireSort.Repository.Implementation
                 {
                     list = list.Where(w => w.DepertId == departId);
                 }
-                 else if (vacancyId > 0)
+                else if (vacancyId > 0)
                 {
                     list = list.Where(w => w.VacancyId == vacancyId);
                 }
@@ -101,11 +101,12 @@ namespace HireSort.Repository.Implementation
                     var resumes = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == vacancyId && w.Job.DepartmentId == departId).Select(s => new Resumes()
                     {
                         ResumeID = s.Id,
-                        CandidateName = s.FirstName + " " + s.LastName,
+                        CandidateName = (s.IsFileParsed == true) ? s.FirstName + " " + s.LastName : s.FileName,
                         MobileNo = s.MobileNo,
                         EmailAddress = s.Email,
                         IsShortListed = s.IsShortlisted,
-                        ShortListedDate = (s.ShortlistDate != null) ? Convert.ToDateTime(s.ShortlistDate).ToString(_dateFormat) : null
+                        ShortListedDate = (s.ShortlistDate != null) ? Convert.ToDateTime(s.ShortlistDate).ToString(_dateFormat) : null,
+                        IsFileParsed = s.IsFileParsed
                     });
 
                     if (isShortListedResume)

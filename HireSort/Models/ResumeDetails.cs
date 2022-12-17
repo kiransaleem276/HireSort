@@ -16,5 +16,6 @@
         public string? EmailAddress { get; set; }
         public bool? IsShortListed { get; set; }
         public string? ShortListedDate { get; set; }
+        public bool? IsFileParsed { get; set; }
     }
 }

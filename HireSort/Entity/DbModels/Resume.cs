@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HireSort.Entities.DbModels
+namespace HireSort.Entity.DbModels
 {
     public partial class Resume
     {
@@ -17,17 +17,18 @@ namespace HireSort.Entities.DbModels
         public int Id { get; set; }
         public int ClientId { get; set; }
         public int JobId { get; set; }
-        public string File { get; set; } = null!;
-        public string FileName { get; set; } = null!;
-        public string FileExt { get; set; } = null!;
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string Compatibility { get; set; } = null!;
-        public string MobileNo { get; set; } = null!;
-        public string Cnic { get; set; } = null!;
         public bool? IsShortlisted { get; set; }
         public DateTime? ShortlistDate { get; set; }
+        public string? FileName { get; set; }
+        public string? FileExt { get; set; }
+        public string? File { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? Compatibility { get; set; }
+        public string? MobileNo { get; set; }
+        public string? Cnic { get; set; }
+        public bool? IsFileParsed { get; set; }
 
         public virtual Client Client { get; set; } = null!;
         public virtual Job Job { get; set; } = null!;

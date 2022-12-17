@@ -1,7 +1,8 @@
 ﻿using HireSort.Context;
-using HireSort.Entities.DbModels;
+using HireSort.Entity.DbModels;
 using HireSort.Helpers;
 using HireSort.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using Sovren;
 using Sovren.Models.API.Parsing;
 
@@ -17,6 +18,40 @@ namespace HireSort.Repository.Implementation
             _dbContext = dbContext;
         }
 
+        public async Task<string> ResumeUpload(IFormFile file, int jobId)
+        {
+            try
+            {
+                string uploads = Path.Combine("C:/Users/HUB360/Desktop/Masters/Practicum/HireSort/HireSort/Resumes/");
+
+                var resume = new Resume();
+                resume.JobId = jobId;
+                resume.FileExt = System.IO.Path.GetExtension(file.FileName);
+                resume.ClientId = clientId;
+                _dbContext.Resumes.Add(resume);
+                _dbContext.SaveChanges();
+
+                string fileName = System.IO.Path.GetFileNameWithoutExtension(file.FileName) + "_" + resume.Id;
+                string filePath = Path.Combine(uploads, fileName + resume.FileExt);
+
+                resume.FileName = fileName;
+                resume.File = filePath;
+
+                _dbContext.Update(resume).State = EntityState.Modified;
+                _dbContext.SaveChanges();
+
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                return "Success.";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
         public async Task<string> resumeContent(int jobId)
         {
             try
@@ -42,6 +77,7 @@ namespace HireSort.Repository.Implementation
                     int resumeId = resume.Id;
 
                     var workHistory = new List<Experience>();
+                    var educations = new List<Education>();
                     if (parseResponse.Value.ResumeData.EmploymentHistory.Positions.Count > 0)
                     {
                         foreach (var job in parseResponse.Value.ResumeData.EmploymentHistory.Positions)
@@ -67,7 +103,24 @@ namespace HireSort.Repository.Implementation
                         _dbContext.Experiences.AddRange(workHistory);
                         _dbContext.SaveChanges();
                     }
-
+                    if (parseResponse.Value.ResumeData.Education.EducationDetails.Count > 0)
+                    {
+                        foreach (var edu in parseResponse.Value.ResumeData.Education.EducationDetails)
+                        {
+                            educations.Add(new Education()
+                            {
+                                ResumeId = resumeId,
+                                InstituteName = edu.SchoolName?.Normalized ?? "",
+                                DegreeName = edu.Degree?.Name?.Normalized ?? "",
+                                Cgpa = edu.GPA?.Score.ToString() ?? "",
+                                StartDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
+                                EndDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
+                                CreatedOn = DateTime.Now
+                            });
+                        }
+                        _dbContext.Educations.AddRange(educations);
+                        _dbContext.SaveChanges();
+                    }
                 }
                 return "";
 
