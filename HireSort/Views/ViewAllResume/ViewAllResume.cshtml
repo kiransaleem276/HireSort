@@ -2,7 +2,12 @@
     ViewData["Title"] = "View All Resumes";
 }
 
+@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))  
+{  
+  
+
 <!-- View All Resume - Vacancy Wise  -->
+
 <div class="container-xxl py-5 mt-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="row gy-5 gx-4">
@@ -10,7 +15,13 @@
 
 
                 <div class="">
-                    <h4 class="mb-4">View All Resumes - Vacancy Wise</h4>
+                    <div class="row g-3 my-4">
+                        <div class="col-8"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
+                        <div class="col-4 text-end">  <button class="btn btn-primary w-50" onclick="document.getElementById('myFileInput').click()">Upload Resume</button></div>
+                        <input type="file" id="myFileInput" />
+                      @Html.TextBoxFor(m => m.File, new { type = "file", @multiple = "multiple"  })
+                      
+                    </div>
                     <hr />
 
                     <div class="row g-3 my-4 d-none">
@@ -137,4 +148,13 @@
         </div>
     </div>
 </div>
-<!-- Add New End -->
+}
+<!-- View All Resume - Vacancy Wise -->
+
+<style>
+    #myFileInput {
+        display: none;
+    }
+
+
+</style>
