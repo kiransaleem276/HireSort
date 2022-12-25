@@ -2,9 +2,7 @@
     ViewData["Title"] = "View All Resumes";
 }
 
-@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))  
-{  
-  
+
 
 <!-- View All Resume - Vacancy Wise  -->
 
@@ -16,10 +14,11 @@
 
                 <div class="">
                     <div class="row g-3 my-4">
-                        <div class="col-8"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
-                        <div class="col-4 text-end">  <button class="btn btn-primary w-50" onclick="document.getElementById('myFileInput').click()">Upload Resume</button></div>
+                        <div class="col-7"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
+                        <div class="col-3 text-end">  <button class="btn btn-primary w-50" onclick="document.getElementById('myFileInput').click()">Upload Resume</button></div>
+                        <div class="col-2 text-end">  <a asp-area="" asp-controller="" asp-action="" class="btn btn-primary w-100">Back</a></div>
                         <input type="file" id="myFileInput" />
-                      @Html.TextBoxFor(m => m.File, new { type = "file", @multiple = "multiple"  })
+                      @*@Html.TextBoxFor(m => m.File, new { type = "file", @multiple = "multiple"  })*@
                       
                     </div>
                     <hr />
@@ -148,7 +147,6 @@
         </div>
     </div>
 </div>
-}
 <!-- View All Resume - Vacancy Wise -->
 
 <style>

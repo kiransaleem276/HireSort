@@ -20,12 +20,12 @@ namespace HireSort.Controllers
         {
             return await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
         }
-        [HttpGet]
-        [Route("check-resume-compatibility")]
-        public async Task<string> GetResumeCompatibility([FromQuery] int resumeId, int jobId)
-        {
-            return await _resumeParsing.resumeGetCompatibility(resumeId, jobId);
-        }
+        //[HttpGet]
+        //[Route("check-resume-compatibility")]
+        ////public async Task<string> GetResumeCompatibility([FromQuery] int resumeId, int jobId)
+        ////{
+        ////    //return await _resumeParsing.resumeGetCompatibility(resumeId, jobId);
+        ////}
 
 
     }
