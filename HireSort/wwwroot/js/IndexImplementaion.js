@@ -194,7 +194,12 @@ function _displayItemsVacancyCount(data) {
 
             let lblVacancyCount = document.createElement('p');
             lblVacancyCount.classList.add('mb-0');
-            lblVacancyCount.textContent = item.vacancyCounts;
+            if (item.vacancyCounts <= 1) {
+                lblVacancyCount.textContent = item.vacancyCounts + "\nVacancy";
+            }
+            else {
+                lblVacancyCount.textContent = item.vacancyCounts + "\nVacancies";
+            }
 
             btnVacancyCount.appendChild(lblVacancyCount);
 
@@ -225,6 +230,7 @@ function _displayItemsVacancyList(data) {
     var status = data.statusCode
     var parsedata = data.successData
     if (status == 200) {
+        let serialNo = 0;
         parsedata.forEach(item => {
 
 
@@ -236,7 +242,9 @@ function _displayItemsVacancyList(data) {
             let td3 = document.createElement('td');
             let td4 = document.createElement('td');
 
-            td1.textContent = "1";
+
+            serialNo++;
+            td1.textContent = serialNo;
             td2.textContent = item.departmentName;
             td3.textContent = item.vacancyName;
 
@@ -256,6 +264,11 @@ function _displayItemsVacancyList(data) {
 
     }
 
+    else if (data.errordata !== null) {
+        let infoEmptyTable = document.createElement('h7');
+        infoEmptyTable.classList.add('mb-3');
+        infoEmptyTable.textContent = "No data available in table"; 
+    }
 
 
 }
