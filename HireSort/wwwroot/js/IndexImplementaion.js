@@ -200,8 +200,10 @@ function _displayItemsVacancyCount(data) {
             departmentTitle.classList.add('mb-3');
             departmentTitle.textContent = item.departmentName;
 
+            var deptIDVacancyList = item.depatId;
             let btnVacancyCount = document.createElement('a');
-            btnVacancyCount.href = "ViewDeptVacancy/ViewDeptVacancy";
+            btnVacancyCount.href = `ViewDeptVacancy/ViewDeptVacancy?departId=${deptIDVacancyList}`
+            
 
             let lblVacancyCount = document.createElement('p');
             lblVacancyCount.classList.add('mb-0');
