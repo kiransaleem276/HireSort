@@ -101,13 +101,15 @@ namespace HireSort.Repository.Implementation
                     var resumes = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == vacancyId && w.Job.DepartmentId == departId).Select(s => new Resumes()
                     {
                         ResumeID = s.Id,
-                        JobId= s.JobId,
+                        JobId = s.JobId,
                         CandidateName = (s.IsFileParsed == true) ? s.FirstName + " " + s.LastName : s.FileName,
                         MobileNo = s.MobileNo,
                         EmailAddress = s.Email,
                         IsShortListed = s.IsShortlisted,
                         ShortListedDate = (s.ShortlistDate != null) ? Convert.ToDateTime(s.ShortlistDate).ToString(_dateFormat) : null,
-                        IsFileParsed = s.IsFileParsed
+                        IsFileParsed = s.IsFileParsed,
+                        IsCompatibilityCheck = s.IsCompatibility,
+                        Compatibility = s.Compatibility
                     });
 
                     if (isShortListedResume)
@@ -159,6 +161,72 @@ namespace HireSort.Repository.Implementation
 
             }
             catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
+        }
+
+        public async Task<ApiResponseMessage> GetJobDetail(int departId, int jobId) 
+        {
+            try
+            {
+                var response = _dbContext.Jobs.Where(w => w.ClientId == clientId && w.DepartmentId == departId && w.JobId == jobId).Select(s => new JobDetails
+                {
+                    JobId = s.JobId,
+                    JobName = s.JobName,
+                    JobStartDate = s.StartDate.ToString(_dateFormat),
+                    JobEndDate = (s.EndDate != null) ? Convert.ToDateTime(s.EndDate).ToString(_dateFormat) : null,
+                    JobDesc = s.JobDetails.Select(s => new JobDescription
+                    {
+                        JobDetailId = s.Id,
+                        JobCode = s.JobCode.CodeName,
+                        Description = s.Description
+                    }).ToList()
+                });
+                return CommonHelper.GetApiSuccessResponse(response);
+            }
+            catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
+        }
+
+        public async Task<ApiResponseMessage> GetResumeCompatibiltiy(int resumeId, int jobId)
+        {
+            try
+            {
+                var response = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == jobId && w.Id == resumeId && w.IsCompatibility == true).Select(s => new ResumeCompatibility()
+                {
+                    ResumeId = s.Id,
+                    CandidateName = s.FileName + " " + s.LastName,
+                    MobieNo = s.MobileNo,
+                    Email = s.Email,
+                    CompatiblePercentage = s.Compatibility,
+                    Educations = s.Educations.Where(w=>w.ResumeId == s.Id).Select(a => new CandidateEducation()
+                    {
+                        EduId = a.Id,
+                        DegreeName = a.DegreeName,
+                        InstituteName = a.InstituteName,
+                        CGPA = a.Cgpa,
+                        StartDate = (a.StartDate != null) ? Convert.ToDateTime(a.StartDate).ToString(_dateFormat) : null,
+                        EndDate = (a.EndDate != null) ? Convert.ToDateTime(a.EndDate).ToString(_dateFormat) : null
+                    }).ToList(),
+                    Experience = s.Experiences.Where(w => w.ResumeId == s.Id).Select(b => new CandidateExperience()
+                    {
+                        ExperienceId = b.Id,
+                        CompanyName = b.CompanyName,
+                        Designation = b.Designation,
+                        Responsiblility = b.Responsibility,
+                        StartDate = (b.StartDate != null) ? Convert.ToDateTime(b.StartDate).ToString(_dateFormat) : null,
+                        EndDate = (b.EndDate != null) ? Convert.ToDateTime(b.EndDate).ToString(_dateFormat) : null,
+                        TotalExperience = b.TotalExperience
+                    }).ToList()
+                });
+                return CommonHelper.GetApiSuccessResponse(response);
+            }
+            catch(Exception ex)
             {
                 string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
                 return CommonHelper.GetApiSuccessResponse(exceptionString, 400);

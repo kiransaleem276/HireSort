@@ -65,6 +65,20 @@ namespace HireSort.Controllers
             var response = await _dashboard.GetDepartmentJobs(departId);
             return Ok(response);
         }
+        [HttpGet]
+        [Route("job-detail")]
+        public async Task<IActionResult> GetJobDetail([FromQuery] int departId,int jobId)
+        {
+            var response = await _dashboard.GetJobDetail(departId, jobId);
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("resume-compatibitlity")]
+        public async Task<IActionResult> GetResumeCompatibiltiy([FromQuery] int resumeId, int jobId)
+        {
+            var response = await _dashboard.GetResumeCompatibiltiy(resumeId, jobId);
+            return Ok(response);
+        }
         [HttpPost]
         [Route("uploadfile")]
 

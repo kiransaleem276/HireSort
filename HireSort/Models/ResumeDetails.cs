@@ -18,5 +18,7 @@
         public bool? IsShortListed { get; set; }
         public string? ShortListedDate { get; set; }
         public bool? IsFileParsed { get; set; }
+        public bool? IsCompatibilityCheck { get; set; }
+        public string? Compatibility { get; set; }
     }
 }

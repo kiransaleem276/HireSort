@@ -485,6 +485,8 @@ namespace HireSort.Context
                     .HasMaxLength(100)
                     .HasColumnName("FIRST_NAME");
 
+                entity.Property(e => e.IsCompatibility).HasColumnName("IS_COMPATIBILITY");
+
                 entity.Property(e => e.IsShortlisted).HasColumnName("IS_SHORTLISTED");
 
                 entity.Property(e => e.JobId).HasColumnName("JOB__ID");
