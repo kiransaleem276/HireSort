@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 function getVacancyList() {
 
-    const uriVacancyList = `api/Dashboard/depart-vacancy-list?departId=${deptID}`
+    const uriVacancyList = `/api/Dashboard/depart-vacancy-list?departId=${deptID}`
     fetch(uriVacancyList)
         .then(response => response.json())
         .then(data => _displayVacancyList(data))

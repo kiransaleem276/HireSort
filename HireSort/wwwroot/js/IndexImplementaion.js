@@ -194,6 +194,10 @@ function _displayItemsVacancyCount(data) {
                 icon.classList.add('fa', 'fa-3x', 'fa-money-check-alt', 'text-primary', 'mb-4');
             }
 
+            else if (item.departmentName == "Education & Learning") {
+                icon.classList.add('fa', 'fa-3x', 'fa-graduation-cap', 'text-primary', 'mb-4');
+            }
+
 
 
             let departmentTitle = document.createElement('h6');
