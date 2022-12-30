@@ -16,65 +16,13 @@ $(document).ready(function () {
     getResumeList();
 
 
-
-
 });
 
-function uploadFiles(inputId) {
-    var input = document.getElementById(inputId);
-    var files = input.files;
-
-    var formData = new FormData();
-
-  
-        formData.append("files", files[0]);
-    
-
-    $.ajax(
-        {
-            url: "/api/dashboard/uploadfile?jobId=1",
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: "POST",
-            success: function (data) {
-                alert("Files Uploaded!");
-            }
-        }
-    );
-}
-
-
-//$("#formFile").on('change', function () {
-//    const uriUploadedResume = `/api/dashboard/uploadfile?jobId=1`
-
-//    fetch(uriUploadedResume)
-//        .then(function (result) {
-//            alert("test");
-//            console.log(result);
-//        })
-//        .catch(function (err) {
-//            console.error(err);
-//        });
-//});
-
-    //$("#btUploadResume").click(function () {
-    //    const uriUploadedResume = '/api/dashboard/uploadfile?jobId=1';
-
-    //    fetch(uriUploadedResume)
-    //        .then(function (result) {
-    //            alert("test");
-    //            console.log(result);
-    //        })
-    //        .catch(function (err) {
-    //            console.error(err);
-    //        });
-    //});
 
 
 function getResumeList() {
 
-    const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
+    const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}&isShortListedResume=true`
     fetch(uriResumeList)
         .then(response => response.json())
         .then(data => _displayResumeList(data))

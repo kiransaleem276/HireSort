@@ -15,10 +15,21 @@
                 <div class="">
                     <div class="row g-3 my-4">
                         <div class="col-7"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
-                        <div class="col-3 text-end">  <button class="btn btn-primary w-50" onclick="document.getElementById('myFileInput').click()">Upload Resume</button></div>
+                        <div class="col-3 text-end">  <button class="btn btn-primary w-50" >Upload Resume</button></div>
                         <div class="col-2 text-end">  <a asp-area="" asp-controller="" asp-action="" class="btn btn-primary w-100">Back</a></div>
-                        <input type="file" id="myFileInput" />
+                      @*  <input type="file" id="myFileInput" />*@
                       @*@Html.TextBoxFor(m => m.File, new { type = "file", @multiple = "multiple"  })*@
+
+                        @*<input class="form-control" type="file" id="formFile">*@
+
+                        <form id="form" name="form" method="post" enctype="multipart/form-data">
+                            <div class="buttons">
+                                <div class="upload-button">
+                                    <div class="label">Click me!</div>
+                                    <input id="files" name="files" type="file" size="50"  onchange="uploadFiles('files');" />
+                                </div>
+                            </div>
+                        </form>
                       
                     </div>
                     <hr />
@@ -74,11 +85,13 @@
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
 
 <script src="~/js/ViewAllResumeImplemetation.js"></script>
-
+@*
 <style>
     #myFileInput {
         display: none;
     }
+*@
+
 
 
 </style>
