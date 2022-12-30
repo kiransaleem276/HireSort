@@ -13,10 +13,12 @@ namespace HireSort.Controllers
         private readonly ILogger<HomeController> _logger;
         private IDashboard _dashboard;
         private ApiResponseMessage apiResponseMessage = null;
-        public DashboardController(ILogger<HomeController> logger, IDashboard dashboard)
+        private readonly IResumeParsing _resumeParsing;
+        public DashboardController(ILogger<HomeController> logger, IDashboard dashboard, IResumeParsing resumeParsing)
         {
             _logger = logger;
             _dashboard = dashboard;
+            _resumeParsing = resumeParsing;
         }
 
         [HttpGet]
@@ -63,6 +65,24 @@ namespace HireSort.Controllers
             var response = await _dashboard.GetDepartmentJobs(departId);
             return Ok(response);
         }
+        [HttpPost]
+        [Route("uploadfile")]
 
+        public Task UploadFiles(IFormFile file, int jobId)
+        {
+            //foreach (IFormFile file in files)
+            //{
+            if (file.Length > 0)
+            {
+                var result = _resumeParsing.ResumeUpload(file, jobId);
+            }
+            return Task.CompletedTask;
+        }
+        [HttpPost]
+        [Route("check-resume-compatibility")]
+        public async Task<string> GetResumeContent([FromQuery] int resumeId, int jobId)
+        {
+            return await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
+        }
     }
 }

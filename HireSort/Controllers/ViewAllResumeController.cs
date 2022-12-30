@@ -47,18 +47,21 @@
 
 
 using HireSort.Models;
+using HireSort.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
+
     public class ViewAllResumeController : Controller
     {
         private readonly ILogger<ViewAllResumeController> _logger;
-
-        public ViewAllResumeController(ILogger<ViewAllResumeController> logger)
+        private IDashboard _dashboard;
+        public ViewAllResumeController(ILogger<ViewAllResumeController> logger, IDashboard dashboard)
         {
             _logger = logger;
+            _dashboard = dashboard;
         }
 
         public IActionResult ViewAllResume()

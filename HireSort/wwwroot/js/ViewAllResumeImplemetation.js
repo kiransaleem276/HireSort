@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 function getResumeList() {
 
-    const uriResumeList = `api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
+    const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
     fetch(uriResumeList)
         .then(response => response.json())
         .then(data => _displayResumeList(data))
