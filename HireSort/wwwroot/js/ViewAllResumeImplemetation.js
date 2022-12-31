@@ -18,7 +18,6 @@ $(document).ready(function () {
 });
 
 function uploadFiles(inputId) {
-    debugger;
     var input = document.getElementById(inputId);
     var files = input.files;
 
@@ -28,13 +27,15 @@ function uploadFiles(inputId) {
     $.ajax(
         {
             //url: "/api/dashboard/uploadfile?jobId=1",
-            url: "/api/dashboard/test?jobId=1",
+            url: `/api/dashboard/test?jobId=${vacID}`,
             data: formData,
             processData: false,
             contentType: false,
             type: "POST",
             success: function (data) {
-                alert("Files Uploaded!");
+                location.reload();
+                //getResumeList();
+                //alert("Files Uploaded!");
             }
         }
     );
@@ -127,11 +128,10 @@ function _displayResumeList(data) {
             divColBtn.classList.add('col-sm-12','col-md-4', 'd-flex', 'flex-column', 'align-items-start', 'align-items-md-end', 'justify-content-center');
 
             let divBtnFlx = document.createElement('div');
-            divBtnFlx.classList.add('d-flex', 'mb-3');
+            divBtnFlx.classList.add('mb-3');
+            divBtnFlx.setAttribute('style', 'width: 100%');
 
-           
-
-         
+            //divBtnFlx.classList.add('d-flex', 'mb-3');
 
             let btnViewDetails = document.createElement('a');
             btnViewDetails.classList.add('btn', 'btn-primary', 'me-3');
@@ -145,24 +145,50 @@ function _displayResumeList(data) {
             //var btnId =  resumeId;
             //btnCheckCompInd.id = btnId;
             let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}`
+            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}&departId=${deptID}`
           
             btnCheckCompInd.appendChild(textCheckComp);
             
 
+            let progressMain = document.createElement('div');
+            /*progressMain.classList.add('d-none');*/
+            progressMain.setAttribute('style', 'height: 50%');
+
+            let progressBar = document.createElement('div');
+            progressBar.classList.add('progress-bar', 'progress-bar-striped', 'bg-success');
+            progressBar.setAttribute('style', 'width: 25%');
+            progressBar.setAttribute('aria-valuenow', '25');
+            progressBar.setAttribute('aria-valuemin', '25');
+            progressBar.setAttribute('aria-valuemax', '25');
+
+            progressMain.appendChild(progressBar);
+
+
+            if (item.isCompatibilityCheck == true) {
+                progressMain.classList.add('d-block');
+                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-none');
+                var width = 'width:' + `${item.compatibility}` + '%';
+                progressBar.setAttribute('style', width);
+                progressBar.textContent = item.compatibility + '%';
+                
+            }
+            else {
+                progressMain.classList.add('d-none');
+                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-block');
+            }
           
             txtEmail.appendChild(iconEmail);
             txtMobile.appendChild(iconMobile);
             divText.appendChild(txtCandidate);
             divText.appendChild(txtEmail);
             divText.appendChild(txtMobile);
-
+                divBtnFlx.appendChild(progressMain);
             divCol.appendChild(icon);
             divCol.appendChild(divText);
 
-            divBtnFlx.appendChild(btnViewDetails);
+            //divBtnFlx.appendChild(btnViewDetails);
             divBtnFlx.appendChild(btnCheckCompInd);
-
+            divBtnFlx.appendChild(progressMain);
             divColBtn.appendChild(divBtnFlx);
 
             divCardRow.appendChild(divCol);

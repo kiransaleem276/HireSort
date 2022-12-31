@@ -2,17 +2,18 @@
 
 var jobID;
 var resumeID;
+/*var departID;*/
 $(document).ready(function () {
     //var queryString = window.location.href;
     ////window.location.href.slice(window.location.href.indexOf('?') + 1);
     //const searchParams = queryString.searchParams;
     //var deptID = searchParams.get('departId');
     //var vacID = searchParams.get('vacancyId');
-    debugger;
     const params = new URLSearchParams(window.location.search);
 
     jobID = params.get('jobId');
     resumeID = params.get('resumeId');
+    departID = params.get('departId');
 
 
     getCompatibilty();
@@ -21,7 +22,7 @@ $(document).ready(function () {
 
 
 function getCompatibilty() {
-    
+
     //const uriCheckCompatibilty = `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`
     //fetch(uriCheckCompatibilty)
     //    .then(response => response.json())
@@ -37,14 +38,158 @@ function getCompatibilty() {
             contentType: false,
             type: "POST",
             success: function () {
-                alert("Files Uploaded!");
+                getResumeInd();
+                //alert("Files Uploaded!");
             }
 
 
         }
     );
 }
+function getResumeInd() {
 
+    const uriResumeList = `/api/dashboard/resume-compatibitlity?resumeId=${resumeID}&jobId=${jobID}`
+    fetch(uriResumeList)
+        .then(response => response.json())
+        .then(data => _displayResumeInd(data))
+        .catch(error => console.error('Unable to get items.', error));
+}
+
+function _displayResumeInd(data) {
+    const resumeProfile = document.getElementById('candidateProfile');
+    const progressBarInd = document.getElementById('progressBarInd');
+    const resumeExp = document.getElementById('experience');
+    const resumeEdu = document.getElementById('education');
+
+  
+    var status = data.statusCode
+    var parsedata = data.successData
+   
+    if (status == 200) {
+        parsedata.forEach(item => {
+
+            let txtCandidate = document.createElement('h5');
+            txtCandidate.classList.add('card-title');
+            txtCandidate.textContent = item.candidateName;
+
+            let divCardEmailNo= document.createElement('div');
+            divCardEmailNo.classList.add('ps-4');
+
+
+            let txtEmail = document.createElement('span');
+            txtEmail.classList.add('text-truncate', 'me-3');
+            txtEmail.textContent = item.email;
+
+            let iconEmail = document.createElement('i');
+            iconEmail.classList.add('fa', 'fa-envelope', 'text-primary', 'me-2');
+
+            let txtMobile = document.createElement('span');
+            txtMobile.classList.add('text-truncate', 'me-3');
+            txtMobile.textContent = item.mobieNo;
+
+            let iconMobile = document.createElement('i');
+            iconMobile.classList.add('fa', 'fa-mobile', 'text-primary', 'me-2');
+
+            txtEmail.appendChild(iconEmail);
+            txtMobile.appendChild(iconMobile);
+            divCardEmailNo.appendChild(txtEmail);
+            divCardEmailNo.appendChild(txtMobile);
+
+            resumeProfile.appendChild(divCardEmailNo);
+            resumeProfile.appendChild(txtCandidate);
+
+            let progressMain = document.createElement('div');
+            progressMain.setAttribute('style', 'height: 5%');
+
+            var width = 'width: ' + `${item.compatiblePercentage}` + '%';
+            let progressBar = document.createElement('div');
+            progressBar.classList.add('progress-bar', 'progress-bar-striped', 'bg-success');
+            progressBar.textContent = item.compatiblePercentage + '%';
+            
+            progressBar.setAttribute('style',width);
+            progressBar.setAttribute('aria-valuenow', '25');
+            progressBar.setAttribute('aria-valuemin', '25');
+            progressBar.setAttribute('aria-valuemax', '25');
+
+            progressMain.appendChild(progressBar);
+
+            progressBarInd.appendChild(progressMain);
+
+            var parsedataExp = item.experience
+            var parsedataEdu = item.educations
+            parsedataExp.forEach(item => {
+
+
+
+                let txtCompany = document.createElement('p');
+                txtCompany.textContent = "Company Name:\n" + item.companyName
+
+                let txtDesignation = document.createElement('p');
+                txtDesignation.textContent = "Designation:\n" + item.designation
+
+                let txtResp = document.createElement('p');
+                txtResp.textContent = "Responsibility:\n" + item.responsiblility
+
+                let txtSDate = document.createElement('p');
+                txtSDate.textContent = "Start Date:\n" + item.startDate
+
+                let txtEdate = document.createElement('p');
+                txtEdate.textContent = "End Date:\n" + item.endDate
+
+                let txtExp = document.createElement('p');
+                txtExp.textContent = "Experience:\n" + item.totalExperience + "\nMonths"
+
+                let txtHR = document.createElement('hr');
+
+                resumeExp.appendChild(txtCompany);
+                resumeExp.appendChild(txtDesignation);
+                resumeExp.appendChild(txtResp);
+                resumeExp.appendChild(txtSDate);
+                resumeExp.appendChild(txtEdate);
+                resumeExp.appendChild(txtExp);
+                resumeExp.appendChild(txtHR);
+
+
+            });
+
+
+            parsedataEdu.forEach(item => {
+
+
+
+                let txtInstitute = document.createElement('p');
+                txtInstitute.textContent = "Institute Name:\n" + item.instituteName
+
+                let txtDegree = document.createElement('p');
+                txtDegree.textContent = "Degree:\n" + item.degreeName
+
+                let txtCgpa = document.createElement('p');
+                txtCgpa.textContent = "CGPA:\n" + item.cgpa
+
+                let txtSDate = document.createElement('p');
+                txtSDate.textContent = "Start Date:\n" + item.startDate
+
+                let txtEdate = document.createElement('p');
+                txtEdate.textContent = "End Date:\n" + item.endDate
+
+
+                let txtHR = document.createElement('hr');
+
+                resumeEdu.appendChild(txtInstitute);
+                resumeEdu.appendChild(txtDegree);
+                resumeEdu.appendChild(txtCgpa);
+                resumeEdu.appendChild(txtSDate);
+                resumeEdu.appendChild(txtEdate);
+                resumeEdu.appendChild(txtHR);
+
+
+            });
+        });
+
+
+       
+    }
+}
 //function _displayCompatibilty(data) {
 
 //    alert("testing");

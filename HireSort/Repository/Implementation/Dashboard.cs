@@ -115,7 +115,7 @@ namespace HireSort.Repository.Implementation
                     if (isShortListedResume)
                         resumes = resumes.Where(w => w.IsShortListed == true);
 
-                    resumeList.Resumes = resumes.ToList();
+                    resumeList.Resumes = resumes.OrderByDescending(o => o.ResumeID).ToList();
                 }
                 return CommonHelper.GetApiSuccessResponse(resumeList);
             }
@@ -167,7 +167,7 @@ namespace HireSort.Repository.Implementation
             }
         }
 
-        public async Task<ApiResponseMessage> GetJobDetail(int departId, int jobId) 
+        public async Task<ApiResponseMessage> GetJobDetail(int departId, int jobId)
         {
             try
             {
@@ -204,7 +204,7 @@ namespace HireSort.Repository.Implementation
                     MobieNo = s.MobileNo,
                     Email = s.Email,
                     CompatiblePercentage = s.Compatibility,
-                    Educations = s.Educations.Where(w=>w.ResumeId == s.Id).Select(a => new CandidateEducation()
+                    Educations = s.Educations.Where(w => w.ResumeId == s.Id).Select(a => new CandidateEducation()
                     {
                         EduId = a.Id,
                         DegreeName = a.DegreeName,
@@ -226,7 +226,7 @@ namespace HireSort.Repository.Implementation
                 });
                 return CommonHelper.GetApiSuccessResponse(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
                 return CommonHelper.GetApiSuccessResponse(exceptionString, 400);

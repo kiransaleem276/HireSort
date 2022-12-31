@@ -240,7 +240,6 @@ function getItemsVacancyList() {
 }
 function _displayItemsVacancyList(data) {
 
-    debugger;
     const tbl_vacancyList = document.getElementById('tbl_vacancyList');
 
     $("#tbl_vacancyList tr").remove();
@@ -251,7 +250,6 @@ function _displayItemsVacancyList(data) {
         parsedata.forEach(item => {
 
 
-            debugger
             let tr = document.createElement('tr');
 
             let td1 = document.createElement('td');
