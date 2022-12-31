@@ -15,61 +15,7 @@ $(document).ready(function () {
 
     getResumeList();
 
-
-
-
 });
-
-function uploadFiles(inputId) {
-    var input = document.getElementById(inputId);
-    var files = input.files;
-
-    var formData = new FormData();
-
-  
-        formData.append("files", files[0]);
-    
-
-    $.ajax(
-        {
-            url: "/api/dashboard/uploadfile?jobId=1",
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: "POST",
-            success: function (data) {
-                alert("Files Uploaded!");
-            }
-        }
-    );
-}
-
-
-//$("#formFile").on('change', function () {
-//    const uriUploadedResume = `/api/dashboard/uploadfile?jobId=1`
-
-//    fetch(uriUploadedResume)
-//        .then(function (result) {
-//            alert("test");
-//            console.log(result);
-//        })
-//        .catch(function (err) {
-//            console.error(err);
-//        });
-//});
-
-    //$("#btUploadResume").click(function () {
-    //    const uriUploadedResume = '/api/dashboard/uploadfile?jobId=1';
-
-    //    fetch(uriUploadedResume)
-    //        .then(function (result) {
-    //            alert("test");
-    //            console.log(result);
-    //        })
-    //        .catch(function (err) {
-    //            console.error(err);
-    //        });
-    //});
 
 
 function getResumeList() {
@@ -84,11 +30,13 @@ function getResumeList() {
 function _displayResumeList(data) {
     const resumeList = document.getElementById('tab-1');
 
+    var jobId = data.successData.vacancyId;
     var status = data.statusCode
     var parsedata = data.successData.resumes
     if (status == 200) {
         parsedata.forEach(item => {
 
+            var resumeId = item.resumeID;
            
             let divCardMain = document.createElement('div');
             divCardMain.classList.add('job-item', 'p-4', 'mb-4');
@@ -105,6 +53,8 @@ function _displayResumeList(data) {
             let divText = document.createElement('div');
             divText.classList.add('text-start', 'ps-4');
 
+
+            
             let txtCandidate = document.createElement('h5');
             txtCandidate.classList.add('mb-3');
             txtCandidate.textContent = item.candidateName;
@@ -143,7 +93,7 @@ function _displayResumeList(data) {
             let btnCheckCompInd = document.createElement('a');
             btnCheckCompInd.classList.add('btn', 'btn-primary');
             let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = '/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual'
+            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}`
             btnCheckCompInd.appendChild(textCheckComp);
             
 
