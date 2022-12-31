@@ -29,7 +29,7 @@ namespace HireSort.Controllers
             return Ok(response);
 
         }
-        
+
         [HttpGet]
         [Route("vacancies-department-wise")]
         public async Task<IActionResult> GetVacanciesDepartmentWise([FromQuery] int departId)
@@ -67,7 +67,7 @@ namespace HireSort.Controllers
         }
         [HttpGet]
         [Route("job-detail")]
-        public async Task<IActionResult> GetJobDetail([FromQuery] int departId,int jobId)
+        public async Task<IActionResult> GetJobDetail([FromQuery] int departId, int jobId)
         {
             var response = await _dashboard.GetJobDetail(departId, jobId);
             return Ok(response);
@@ -82,21 +82,40 @@ namespace HireSort.Controllers
         [HttpPost]
         [Route("uploadfile")]
 
-        public Task UploadFiles(IFormFile file, int jobId)
+        public async Task<IActionResult> UploadFiles(IFormFile file, int jobId)
         {
             //foreach (IFormFile file in files)
             //{
             if (file.Length > 0)
             {
                 var result = _resumeParsing.ResumeUpload(file, jobId);
+                return Ok(result);
             }
-            return Task.CompletedTask;
+            return BadRequest();
         }
         [HttpPost]
         [Route("check-resume-compatibility")]
-        public async Task<string> GetResumeContent([FromQuery] int resumeId, int jobId)
+        public async Task<IActionResult> GetResumeContent([FromQuery] int resumeId, int jobId)
         {
-            return await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
+            var result = await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
+            return Ok(result);
+
+        }
+        //[HttpPost]
+        //public async Task<IActionResult> Test(IFormFile data)
+        //{
+        //    return "test";
+        //}
+        [HttpPost]
+        [Route("test")]
+        public async Task<IActionResult> Test(IFormFile files,int jobId)
+        {
+            if (files.Length > 0)
+            {
+                var result = _resumeParsing.ResumeUpload(files, jobId);
+                return Ok(result);
+            }
+            return BadRequest();
         }
     }
 }

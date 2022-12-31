@@ -1,8 +1,10 @@
-﻿namespace HireSort.Repository.Interface
+﻿using HireSort.Models;
+
+namespace HireSort.Repository.Interface
 {
     public interface IResumeParsing
     {
-        public Task<string> resumeCheckCompatibility(int resumeId, int jobId);
-        public Task<string> ResumeUpload(IFormFile file, int jobId);
+        public Task<ApiResponseMessage> resumeCheckCompatibility(int resumeId, int jobId);
+        public Task<ApiResponseMessage> ResumeUpload(IFormFile file, int jobId);
     }
 }

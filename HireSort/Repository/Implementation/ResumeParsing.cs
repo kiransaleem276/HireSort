@@ -1,6 +1,7 @@
 ﻿using HireSort.Context;
 using HireSort.Entity.DbModels;
 using HireSort.Helpers;
+using HireSort.Models;
 using HireSort.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using Sovren;
@@ -18,7 +19,7 @@ namespace HireSort.Repository.Implementation
             _dbContext = dbContext;
         }
 
-        public async Task<string> ResumeUpload(IFormFile file, int jobId)
+        public async Task<ApiResponseMessage> ResumeUpload(IFormFile file, int jobId)
         {
             try
             {
@@ -44,15 +45,18 @@ namespace HireSort.Repository.Implementation
                 {
                     file.CopyTo(fileStream);
                 }
+                return CommonHelper.GetApiSuccessResponse("Success.");
 
-                return "Success.";
+                //return "Success.";
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return CommonHelper.GetApiSuccessResponse(ex.Message);
+
+                //return ex.Message.ToString();
             }
         }
-        public async Task<string> resumeCheckCompatibility(int resumeId, int jobId)
+        public async Task<ApiResponseMessage> resumeCheckCompatibility(int resumeId, int jobId)
         {
             try
             {
@@ -134,14 +138,19 @@ namespace HireSort.Repository.Implementation
                         _dbContext.Update(resume).State = EntityState.Modified;
                         _dbContext.SaveChanges();
                     }
-                    return "Success.";
+                    return CommonHelper.GetApiSuccessResponse("Success.");
+                    //return "Success.";
                 }
-                return "File Not Found.";
+                return CommonHelper.GetApiSuccessResponse("File Not Found.");
+
+                //return "File Not Found.";
 
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return CommonHelper.GetApiSuccessResponse(ex.Message);
+
+                //return ex.Message;
             }
         }
 

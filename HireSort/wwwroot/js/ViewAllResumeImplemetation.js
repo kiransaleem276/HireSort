@@ -21,18 +21,17 @@ $(document).ready(function () {
 });
 
 function uploadFiles(inputId) {
+    debugger;
     var input = document.getElementById(inputId);
     var files = input.files;
 
     var formData = new FormData();
-
-  
-        formData.append("files", files[0]);
-    
+    formData.append("files", files[0]);
 
     $.ajax(
         {
-            url: "/api/dashboard/uploadfile?jobId=1",
+            //url: "/api/dashboard/uploadfile?jobId=1",
+            url: "/api/dashboard/test?jobId=1",
             data: formData,
             processData: false,
             contentType: false,
