@@ -15,9 +15,6 @@ $(document).ready(function () {
 
     getResumeList();
 
-
-
-
 });
 
 function uploadFiles(inputId) {
@@ -83,11 +80,13 @@ function getResumeList() {
 function _displayResumeList(data) {
     const resumeList = document.getElementById('tab-1');
 
+    var jobId = data.successData.vacancyId;
     var status = data.statusCode
     var parsedata = data.successData.resumes
     if (status == 200) {
         parsedata.forEach(item => {
 
+            var resumeId = item.resumeID;
            
             let divCardMain = document.createElement('div');
             divCardMain.classList.add('job-item', 'p-4', 'mb-4');
@@ -104,6 +103,8 @@ function _displayResumeList(data) {
             let divText = document.createElement('div');
             divText.classList.add('text-start', 'ps-4');
 
+
+            
             let txtCandidate = document.createElement('h5');
             txtCandidate.classList.add('mb-3');
             txtCandidate.textContent = item.candidateName;
@@ -142,7 +143,7 @@ function _displayResumeList(data) {
             let btnCheckCompInd = document.createElement('a');
             btnCheckCompInd.classList.add('btn', 'btn-primary');
             let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = '/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual'
+            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}`
             btnCheckCompInd.appendChild(textCheckComp);
             
 
