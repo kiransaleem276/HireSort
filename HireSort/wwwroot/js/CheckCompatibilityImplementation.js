@@ -15,45 +15,58 @@ $(document).ready(function () {
     resumeID = params.get('resumeId');
 
 
-   /* getCompatibilty();*/
+    getCompatibilty();
 
-});
-$("p").click(function () {
-    alert("The paragraph was clicked.");
 });
 
 
 function getCompatibilty() {
+    
+    //const uriCheckCompatibilty = `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`
+    //fetch(uriCheckCompatibilty)
+    //    .then(response => response.json())
+    //    .then(data => _displayCompatibilty(data))
+    //    .catch(error => console.error('Unable to get items.', error));
 
-    const uriCheckCompatibilty = `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`
-    fetch(uriCheckCompatibilty)
-        .then(response => response.json())
-        .then(data => _displayCompatibilty(data))
-        .catch(error => console.error('Unable to get items.', error));
+    $.ajax(
+        {
+            //url: "/api/dashboard/uploadfile?jobId=1",
+            url: `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`,
+            //data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function () {
+                alert("Files Uploaded!");
+            }
+
+
+        }
+    );
 }
 
-function _displayCompatibilty(data) {
+//function _displayCompatibilty(data) {
 
-    alert("testing");
+//    alert("testing");
 
-    //const vacancyList = document.getElementById('tab-1');
-    var status = data.statusCode
-    var error = data.error
-    if (status == 200) {
+//    //const vacancyList = document.getElementById('tab-1');
+//    var status = data.statusCode
+//    var error = data.error
+//    if (status == 200) {
 
-        const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
-        fetch(uriResumeList)
-            .then(response => response.json())
-            .then(data => _displayResumeList(data))
-            .catch(error => console.error('Unable to get items.', error));
+//        const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
+//        fetch(uriResumeList)
+//            .then(response => response.json())
+//            .then(data => _displayResumeList(data))
+//            .catch(error => console.error('Unable to get items.', error));
 
 
 
-    }
-    else {
-        alert("File Not Found");
-    }
-}
+//    }
+//    else {
+//        alert("File Not Found");
+//    }
+//}
 
     //var status = data.statusCode
     //var parsedata = data.successData
@@ -135,7 +148,7 @@ function _displayCompatibilty(data) {
     //    });
     //}
 
-}
+//}
 
 
 //function getResumeList() {
@@ -243,4 +256,4 @@ function _displayCompatibilty(data) {
 
 //        });
 //    }
-}
+//}
