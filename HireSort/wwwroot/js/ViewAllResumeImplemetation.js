@@ -144,6 +144,7 @@ function _displayResumeList(data) {
             btnCheckCompInd.classList.add('btn', 'btn-primary');
             let textCheckComp = document.createTextNode("Check Compatibility");
             btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}`
+            
             btnCheckCompInd.appendChild(textCheckComp);
             
 

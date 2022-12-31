@@ -8,17 +8,19 @@ $(document).ready(function () {
     //const searchParams = queryString.searchParams;
     //var deptID = searchParams.get('departId');
     //var vacID = searchParams.get('vacancyId');
-
+    debugger;
     const params = new URLSearchParams(window.location.search);
-   
+
     jobID = params.get('jobId');
     resumeID = params.get('resumeId');
 
 
-    getCompatibilty();
+   /* getCompatibilty();*/
 
 });
-
+$("p").click(function () {
+    alert("The paragraph was clicked.");
+});
 
 
 function getCompatibilty() {
@@ -38,6 +40,7 @@ function _displayCompatibilty(data) {
     var status = data.statusCode
     var error = data.error
     if (status == 200) {
+
         const uriResumeList = `/api/Dashboard/resume-list?departId=${deptID}&vacancyId=${vacID}`
         fetch(uriResumeList)
             .then(response => response.json())
@@ -50,8 +53,8 @@ function _displayCompatibilty(data) {
     else {
         alert("File Not Found");
     }
-     }
-    
+}
+
     //var status = data.statusCode
     //var parsedata = data.successData
     //if (status == 200) {
@@ -105,7 +108,7 @@ function _displayCompatibilty(data) {
     //        btnViewDetails.appendChild(textViewDetails);
 
 
-     
+
     //        txtEmail.appendChild(iconEmail);
     //        txtMobile.appendChild(iconMobile);
     //        divText.appendChild(txtCandidate);
@@ -116,7 +119,7 @@ function _displayCompatibilty(data) {
     //        divCol.appendChild(divText);
 
     //        divBtnFlx.appendChild(btnViewDetails);
-            
+
 
     //        divColBtn.appendChild(divBtnFlx);
 

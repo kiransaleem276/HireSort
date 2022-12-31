@@ -141,7 +141,7 @@ namespace HireSort.Repository.Implementation
                     return CommonHelper.GetApiSuccessResponse("Success.");
                     //return "Success.";
                 }
-                return CommonHelper.GetApiSuccessResponse("File Not Found.");
+                return CommonHelper.GetApiSuccessResponse("File Not Found.",400);
 
                 //return "File Not Found.";
 

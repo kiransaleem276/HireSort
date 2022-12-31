@@ -26,7 +26,14 @@
  
                     </div>
                     <hr />
-
+                       <form id="form" name="form" method="post" enctype="multipart/form-data">
+                            <div class="buttons">
+                                <div class="upload-button">
+                                    <div class="label">click me!</div>
+                                    <input id="files" name="files" type="file" size="50" onchange="uploadFiles('files');" />
+                                </div>
+                            </div>
+                        </form>
                     <div class="row g-3 my-4 d-none">
                             <div class="col-6 text-end">
                                 <button class="btn btn-primary w-50">Upload Resume</button>
@@ -34,6 +41,9 @@
                               <div class="col-6">
                             <button class="btn btn-primary w-50" onclick="location.href='@Url.Action("CheckCompatibiltyAll", "CheckCompatibiltyAll")';return false;">Check Compatibility</button>
                             </div>
+
+                          
+
                             </div>
                     ' <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
 
