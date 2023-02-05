@@ -96,7 +96,14 @@ namespace HireSort.Repository.Implementation
                                 });
                                 if (clientHighlights != null && clientHighlights.Category == "gpa" && edu.Degree?.Type == "bachelors" && !String.IsNullOrEmpty(edu.GPA?.Score.ToString()))
                                 {
-                                    Compatibility += (Convert.ToDouble(edu.GPA?.Score) / Convert.ToDouble(clientHighlights.Description)) * 60;
+                                    if (Convert.ToDouble(edu.GPA?.Score) >= Convert.ToDouble(clientHighlights.Description))
+                                    {
+                                        Compatibility += 60;
+                                    }
+                                    else
+                                    {
+                                        Compatibility += (Convert.ToDouble(edu.GPA?.Score) / Convert.ToDouble(clientHighlights.Description)) * 60;
+                                    }
                                     percentage -= 60;
                                 }
 
@@ -129,7 +136,14 @@ namespace HireSort.Repository.Implementation
 
                             }
                             int totalExp = workHistory.Sum(s => s.TotalExperience);
-                            Compatibility += (totalExp / 40) * percentage;
+                            if (totalExp >= 40)
+                            {
+                                Compatibility += percentage;
+                            }
+                            else
+                            {
+                                Compatibility += (totalExp / 40) * percentage;
+                            }
                             _dbContext.Experiences.AddRange(workHistory);
                             _dbContext.SaveChanges();
                         }
@@ -141,7 +155,7 @@ namespace HireSort.Repository.Implementation
                     return CommonHelper.GetApiSuccessResponse("Success.");
                     //return "Success.";
                 }
-                return CommonHelper.GetApiSuccessResponse("File Not Found.",400);
+                return CommonHelper.GetApiSuccessResponse("File Not Found.", 400);
 
                 //return "File Not Found.";
 
