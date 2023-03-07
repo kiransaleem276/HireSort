@@ -85,8 +85,19 @@ namespace HireSort.Repository.Implementation
                         double percentage = 100;
                         var workHistory = new List<Experience>();
                         var educations = new List<Education>();
+                        var technicalSkills = new List<TechnicalSkill>();
                         if (parseResponse.Value.ResumeData.Education.EducationDetails.Count > 0)
                         {
+                            //educations.AddRange(parseResponse.Value.ResumeData.Education.EducationDetails.Select(edu => new Education()
+                            //{
+                            //    ResumeId = resumeId,
+                            //    InstituteName = edu.SchoolName?.Normalized ?? "",
+                            //    DegreeName = edu.Degree?.Name?.Normalized ?? "",
+                            //    Cgpa = edu.GPA?.Score.ToString() ?? "",
+                            //    StartDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
+                            //    EndDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
+                            //    CreatedOn = DateTime.Now
+                            //}));
                             foreach (var edu in parseResponse.Value.ResumeData.Education.EducationDetails)
                             {
                                 educations.Add(new Education()
@@ -116,7 +127,7 @@ namespace HireSort.Repository.Implementation
 
                                 //Initutte Name Match
                                 if (institute != null && edu.Degree?.Type == "bachelors" &&
-                                     ((edu.SchoolName?.Normalized.ToLower().Trim().Equals(institute.ToLower().Trim()) ?? false) || (edu.SchoolName?.Normalized.ToLower().Trim().Contains(institute.ToLower().Trim()) ?? false) || Fuzz.TokenInitialismRatio(edu.SchoolName?.Normalized, institute) > 80))
+                                     ((edu.Text?.ToLower().Trim().Equals(institute.ToLower().Trim()) ?? false) || (edu.Text?.ToLower().Trim().Contains(institute.ToLower().Trim()) ?? false) || Fuzz.TokenInitialismRatio(edu.Text ?? null, institute) > 80))
                                 {
                                     Compatibility += insPer;
                                     percentage -= insPer;
@@ -129,7 +140,7 @@ namespace HireSort.Repository.Implementation
                                 expPer += remainingPer;
                                 skillPer += remainingPer;
                             }
-                            if (educations.Any(w => w.DegreeName.Equals("computer science") || w.DegreeName.Contains("computer science") || Fuzz.TokenInitialismRatio(w.DegreeName, "computer science") > 80))
+                            if (educations.Any(w => w.DegreeName.ToLower().Trim().Equals("bsc") || w.DegreeName.ToLower().Trim().Contains("bsc") || Fuzz.TokenInitialismRatio(w.DegreeName.ToLower().Trim(), "bsc") > 80))
                             {
                                 Compatibility += eduPer;
                                 percentage -= eduPer;
@@ -161,15 +172,27 @@ namespace HireSort.Repository.Implementation
                                 });
                             }
                             int totalExp = workHistory.Sum(s => s.TotalExperience);
-                            if (totalExp >= expPer)
+                            if (totalExp >= 40)
                             {
-                                Compatibility += percentage;
+                                Compatibility += expPer;
                             }
                             else
                             {
-                                Compatibility += (totalExp / expPer) * percentage;
+                                Compatibility += (totalExp / totalExp) * expPer;
                             }
                             _dbContext.Experiences.AddRange(workHistory);
+                            _dbContext.SaveChanges();
+                        }
+
+                        if (parseResponse.Value.ResumeData.Skills.Raw.Count > 0)
+                        {
+                            technicalSkills.AddRange(parseResponse.Value.ResumeData.Skills.Raw.Distinct().Select(s => new TechnicalSkill()
+                            {
+                                ResumeId = resumeId,
+                                Skills = s.Name,
+                            }));
+
+                            _dbContext.TechnicalSkills.AddRange(technicalSkills);
                             _dbContext.SaveChanges();
                         }
                         resume.Compatibility = Math.Round(Compatibility, 2).ToString();
