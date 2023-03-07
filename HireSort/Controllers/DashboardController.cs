@@ -97,6 +97,7 @@ namespace HireSort.Controllers
         [Route("check-resume-compatibility")]
         public async Task<IActionResult> GetResumeContent([FromQuery] int resumeId, int jobId)
         {
+            //var result = await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
             var result = await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
             return Ok(result);
 
