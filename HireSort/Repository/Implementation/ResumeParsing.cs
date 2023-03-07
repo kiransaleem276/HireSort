@@ -1,4 +1,5 @@
-﻿using HireSort.Context;
+﻿using FuzzySharp;
+using HireSort.Context;
 using HireSort.Entity.DbModels;
 using HireSort.Helpers;
 using HireSort.Models;
