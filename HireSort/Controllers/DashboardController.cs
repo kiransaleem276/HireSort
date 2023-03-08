@@ -102,11 +102,13 @@ namespace HireSort.Controllers
             return Ok(result);
 
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Test(IFormFile data)
-        //{
-        //    return "test";
-        //}
+        [HttpPost]
+        [Route("resume-shorlisting")]
+        public async Task<IActionResult> ResumeShortlisting(int resumeId)
+        {
+            var response = await _dashboard.ResumeShorlisting(resumeId);
+            return Ok(response);
+        }
         [HttpPost]
         [Route("test")]
         public async Task<IActionResult> Test(IFormFile files,int jobId)

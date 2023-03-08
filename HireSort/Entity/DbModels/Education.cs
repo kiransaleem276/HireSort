@@ -13,6 +13,7 @@ namespace HireSort.Entity.DbModels
         public DateTime? EndDate { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? StartDate { get; set; }
+        public string? DegreeType { get; set; }
 
         public virtual Resume Resume { get; set; } = null!;
     }

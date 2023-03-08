@@ -232,5 +232,27 @@ namespace HireSort.Repository.Implementation
                 return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
             }
         }
+
+        public async Task<ApiResponseMessage> ResumeShorlisting(int resumeId)
+        {
+            try
+            {
+                var resume = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.Id == resumeId && w.IsCompatibility == true && w.IsShortlisted != true).FirstOrDefault();
+                if (resume != null)
+                {
+                    resume.IsShortlisted = true;
+                    resume.ShortlistDate = DateTime.Now;
+                    _dbContext.Entry(resume).State = EntityState.Modified;
+                    _dbContext.SaveChanges();
+                    return CommonHelper.GetApiSuccessResponse("Successfully Shorlisted.");
+                }
+                return CommonHelper.GetApiSuccessResponse("Resume Not Found.", 400);
+            }
+            catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
+        }
     }
 }

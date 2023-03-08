@@ -13,5 +13,6 @@ namespace HireSort.Repository.Interface
         Task<ApiResponseMessage> GetDepartmentJobs(int departId);
         Task<ApiResponseMessage> GetJobDetail(int departId, int jobId);
         Task<ApiResponseMessage> GetResumeCompatibiltiy(int resumeId, int jobId);
+        Task<ApiResponseMessage> ResumeShorlisting(int resumeId);
     }
 }

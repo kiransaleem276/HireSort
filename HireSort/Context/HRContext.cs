@@ -39,7 +39,7 @@ namespace HireSort.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-VDH112J;Database=HireSort;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("Server=HUB360-KIRAN-MUHAMMAD-SALEEM;Database=HireSort;Integrated Security=True;MultipleActiveResultSets=True;");
             }
         }
 
@@ -197,6 +197,8 @@ namespace HireSort.Context
                     .HasMaxLength(100)
                     .HasColumnName("DEGREE_NAME");
 
+                entity.Property(e => e.DegreeType).HasColumnName("DEGREE_TYPE");
+
                 entity.Property(e => e.EndDate)
                     .HasColumnType("datetime")
                     .HasColumnName("END_DATE");
@@ -224,17 +226,13 @@ namespace HireSort.Context
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.CompanyName)
-                    .HasMaxLength(100)
-                    .HasColumnName("COMPANY_NAME");
+                entity.Property(e => e.CompanyName).HasColumnName("COMPANY_NAME");
 
                 entity.Property(e => e.CreatedOn)
                     .HasColumnType("datetime")
                     .HasColumnName("CREATED_ON");
 
-                entity.Property(e => e.Designation)
-                    .HasMaxLength(50)
-                    .HasColumnName("DESIGNATION");
+                entity.Property(e => e.Designation).HasColumnName("DESIGNATION");
 
                 entity.Property(e => e.EndDate)
                     .HasColumnType("datetime")
@@ -254,7 +252,7 @@ namespace HireSort.Context
                     .WithMany(p => p.Experiences)
                     .HasForeignKey(d => d.ResumeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__EXPERIENC__RESUM__4AB81AF0");
+                    .HasConstraintName("FK__EXPERIENC__RESUM__74AE54BC");
             });
 
             modelBuilder.Entity<Home>(entity =>
@@ -368,9 +366,7 @@ namespace HireSort.Context
                     .HasColumnType("datetime")
                     .HasColumnName("CREATED_ON");
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(50)
-                    .HasColumnName("DESCRIPTION");
+                entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
 
                 entity.Property(e => e.JobCodeId).HasColumnName("JOB_CODE_ID");
 
@@ -380,19 +376,19 @@ namespace HireSort.Context
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__CLIEN__3F466844");
+                    .HasConstraintName("FK__JOB_DETAI__CLIEN__6FE99F9F");
 
                 entity.HasOne(d => d.JobCode)
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.JobCodeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__JOB_C__412EB0B6");
+                    .HasConstraintName("FK__JOB_DETAI__JOB_C__71D1E811");
 
                 entity.HasOne(d => d.Job)
                     .WithMany(p => p.JobDetails)
                     .HasForeignKey(d => d.JobId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__JOB_DETAI__JOB____403A8C7D");
+                    .HasConstraintName("FK__JOB_DETAI__JOB____70DDC3D8");
             });
 
             modelBuilder.Entity<Link>(entity =>

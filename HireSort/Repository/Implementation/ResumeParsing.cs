@@ -61,10 +61,11 @@ namespace HireSort.Repository.Implementation
         }
         public async Task<ApiResponseMessage> resumeCheckCompatibility(int resumeId, int jobId)
         {
-            try
+
+            var resume = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == jobId && w.Id == resumeId && w.IsFileParsed != true).FirstOrDefault();
+            if (resume != null)
             {
-                var resume = _dbContext.Resumes.Where(w => w.ClientId == clientId && w.JobId == jobId && w.Id == resumeId && w.IsFileParsed != true).FirstOrDefault();
-                if (resume != null)
+                try
                 {
                     double gpaPer = 30, insPer = 20, expPer = 25, eduPer = 10, skillPer = 15;
 
@@ -79,25 +80,16 @@ namespace HireSort.Repository.Implementation
                         resume.Email = parseResponse.EasyAccess().GetEmailAddresses()?.FirstOrDefault() ?? "";
                         resume.MobileNo = parseResponse.EasyAccess().GetPhoneNumbers()?.FirstOrDefault() ?? "";
                         resume.Cnic = parseResponse.EasyAccess().GetNationalIdentities()?.Select(s => s.Number).FirstOrDefault() ?? "";
-                        resume.IsFileParsed = true;
+                        //resume.IsFileParsed = true;
 
                         double Compatibility = 0;
                         double percentage = 100;
                         var workHistory = new List<Experience>();
                         var educations = new List<Education>();
                         var technicalSkills = new List<TechnicalSkill>();
+                        var links = new List<Link>();
                         if (parseResponse.Value.ResumeData.Education.EducationDetails.Count > 0)
                         {
-                            //educations.AddRange(parseResponse.Value.ResumeData.Education.EducationDetails.Select(edu => new Education()
-                            //{
-                            //    ResumeId = resumeId,
-                            //    InstituteName = edu.SchoolName?.Normalized ?? "",
-                            //    DegreeName = edu.Degree?.Name?.Normalized ?? "",
-                            //    Cgpa = edu.GPA?.Score.ToString() ?? "",
-                            //    StartDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
-                            //    EndDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
-                            //    CreatedOn = DateTime.Now
-                            //}));
                             foreach (var edu in parseResponse.Value.ResumeData.Education.EducationDetails)
                             {
                                 educations.Add(new Education()
@@ -106,6 +98,7 @@ namespace HireSort.Repository.Implementation
                                     InstituteName = edu.SchoolName?.Normalized ?? "",
                                     DegreeName = edu.Degree?.Name?.Normalized ?? "",
                                     Cgpa = edu.GPA?.Score.ToString() ?? "",
+                                    DegreeType = edu.Degree?.Type ?? "",
                                     StartDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
                                     EndDate = (edu.LastEducationDate != null) ? edu.LastEducationDate.Date : null,
                                     CreatedOn = DateTime.Now
@@ -195,6 +188,19 @@ namespace HireSort.Repository.Implementation
                             _dbContext.TechnicalSkills.AddRange(technicalSkills);
                             _dbContext.SaveChanges();
                         }
+
+                        if (parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Count > 0)
+                        {
+                            links.AddRange(parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Select(s => new Link()
+                            {
+                                ResumeId = resumeId,
+                                Links = s.Address,
+                                LintType = s.Type
+                            }));
+
+                            _dbContext.Links.AddRange(links);
+                            _dbContext.SaveChanges();
+                        }
                         resume.Compatibility = Math.Round(Compatibility, 2).ToString();
                         resume.IsCompatibility = true;
                         _dbContext.Update(resume).State = EntityState.Modified;
@@ -203,17 +209,21 @@ namespace HireSort.Repository.Implementation
                     return CommonHelper.GetApiSuccessResponse("Success.");
                     //return "Success.";
                 }
-                return CommonHelper.GetApiSuccessResponse("File Not Found.", 400);
+                catch (Exception ex)
+                {
+                    return CommonHelper.GetApiSuccessResponse(ex.Message);
 
-                //return "File Not Found.";
+                    //return ex.Message;
+                }
 
+                resume.IsFileParsed = true;
+                _dbContext.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                return CommonHelper.GetApiSuccessResponse(ex.Message);
+            return CommonHelper.GetApiSuccessResponse("File Not Found.", 400);
 
-                //return ex.Message;
-            }
+            //return "File Not Found.";
+
+
         }
 
         public async Task<ApiResponseMessage> ResumeCalculateCompatibility(int resumeId, int jobId)
