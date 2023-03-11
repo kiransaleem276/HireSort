@@ -204,6 +204,8 @@ namespace HireSort.Repository.Implementation
                     MobieNo = s.MobileNo,
                     Email = s.Email,
                     CompatiblePercentage = s.Compatibility,
+                    GPA = "3.8",
+                    InstituteMatch = "Yes",
                     Educations = s.Educations.Where(w => w.ResumeId == s.Id).Select(a => new CandidateEducation()
                     {
                         EduId = a.Id,
@@ -222,8 +224,19 @@ namespace HireSort.Repository.Implementation
                         StartDate = (b.StartDate != null) ? Convert.ToDateTime(b.StartDate).ToString(_dateFormat) : null,
                         EndDate = (b.EndDate != null) ? Convert.ToDateTime(b.EndDate).ToString(_dateFormat) : null,
                         TotalExperience = b.TotalExperience
+                    }).ToList(),
+                    Skills = s.TechnicalSkills.Where(w => w.ResumeId == s.Id).Select(c => new Skills()
+                    {
+                        SkillsId = c.Id,
+                        SkillName = c.Skills
+                    }).ToList(),
+                    Links = s.Links.Where(w => w.ResumeId == s.Id).Select(d => new Links()
+                    {
+                        LinkId = d.Id,
+                        LinkType = d.LintType,
+                        Link = d.Links
                     }).ToList()
-                });
+                }); ;
                 return CommonHelper.GetApiSuccessResponse(response);
             }
             catch (Exception ex)
