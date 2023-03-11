@@ -481,6 +481,14 @@ namespace HireSort.Context
                     .HasMaxLength(100)
                     .HasColumnName("FIRST_NAME");
 
+                entity.Property(e => e.Gpa)
+                    .HasMaxLength(50)
+                    .HasColumnName("GPA");
+
+                entity.Property(e => e.InstituteMatch)
+                    .HasMaxLength(50)
+                    .HasColumnName("INSTITUTE_MATCH");
+
                 entity.Property(e => e.IsCompatibility).HasColumnName("IS_COMPATIBILITY");
 
                 entity.Property(e => e.IsShortlisted).HasColumnName("IS_SHORTLISTED");

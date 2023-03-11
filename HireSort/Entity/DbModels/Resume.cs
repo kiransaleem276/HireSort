@@ -30,6 +30,8 @@ namespace HireSort.Entity.DbModels
         public string? Cnic { get; set; }
         public bool? IsFileParsed { get; set; }
         public bool? IsCompatibility { get; set; }
+        public string? Gpa { get; set; }
+        public string? InstituteMatch { get; set; }
 
         public virtual Client Client { get; set; } = null!;
         public virtual Job Job { get; set; } = null!;

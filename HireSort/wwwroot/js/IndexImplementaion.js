@@ -62,8 +62,9 @@ function _displayItemsDept(data) {
 }
 
 $("#department").change(function () {
-    ddl_Vac.empty();
+  
     getItemsVacancy();
+    ddl_Vac.empty();
 
 });
 
