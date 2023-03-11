@@ -141,6 +141,10 @@ namespace HireSort.Repository.Implementation
                                 expPer += remainingPer;
                                 skillPer += remainingPer;
                             }
+                            if (String.IsNullOrEmpty(resume.InstituteMatch))
+                            {
+                                resume.InstituteMatch = "No";
+                            }
                             //if (educations.Any(w => w.DegreeName.ToLower().Trim().Equals("bsc") || w.DegreeName.ToLower().Trim().Contains("bsc") || Fuzz.TokenInitialismRatio(w.DegreeName.ToLower().Trim(), "bsc") > 80))
                             if (eduMatch)
                             {
@@ -166,7 +170,7 @@ namespace HireSort.Repository.Implementation
                                     ResumeId = resumeId,
                                     CompanyName = job.Employer?.Name?.Normalized ?? "",
                                     Responsibility = job.Description,
-                                    Designation = job.NormalizedProfession.Profession.Description,
+                                    Designation = job.JobTitle?.Normalized ?? "",
                                     TotalExperience = TotalMonths,
                                     StartDate = job.StartDate.Date,
                                     EndDate = job.EndDate.Date,
