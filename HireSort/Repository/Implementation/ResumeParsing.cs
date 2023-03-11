@@ -90,6 +90,7 @@ namespace HireSort.Repository.Implementation
                         var links = new List<Link>();
                         if (parseResponse.Value.ResumeData.Education.EducationDetails.Count > 0)
                         {
+                            bool eduMatch = false;
                             foreach (var edu in parseResponse.Value.ResumeData.Education.EducationDetails)
                             {
                                 educations.Add(new Education()
@@ -115,6 +116,7 @@ namespace HireSort.Repository.Implementation
                                     {
                                         Compatibility += (Convert.ToDouble(edu.GPA?.Score) / Convert.ToDouble(gpa)) * gpaPer;
                                     }
+                                    resume.Gpa = edu.GPA?.Score;
                                     percentage -= gpaPer;
                                 }
 
@@ -122,8 +124,14 @@ namespace HireSort.Repository.Implementation
                                 if (institute != null && edu.Degree?.Type == "bachelors" &&
                                      ((edu.Text?.ToLower().Trim().Equals(institute.ToLower().Trim()) ?? false) || (edu.Text?.ToLower().Trim().Contains(institute.ToLower().Trim()) ?? false) || Fuzz.TokenInitialismRatio(edu.Text ?? null, institute) > 80))
                                 {
+                                    resume.InstituteMatch = "Yes";
                                     Compatibility += insPer;
                                     percentage -= insPer;
+                                }
+
+                                if ((edu.Text?.ToLower().Trim().Equals("bsc") ?? false) || (edu.Text?.ToLower().Trim().Contains("bsc") ?? false) || Fuzz.TokenInitialismRatio(edu.Text?.ToLower().Trim(), "bsc") > 80)
+                                {
+                                    eduMatch = true;
                                 }
                             }
                             if (percentage > 50)
@@ -133,7 +141,8 @@ namespace HireSort.Repository.Implementation
                                 expPer += remainingPer;
                                 skillPer += remainingPer;
                             }
-                            if (educations.Any(w => w.DegreeName.ToLower().Trim().Equals("bsc") || w.DegreeName.ToLower().Trim().Contains("bsc") || Fuzz.TokenInitialismRatio(w.DegreeName.ToLower().Trim(), "bsc") > 80))
+                            //if (educations.Any(w => w.DegreeName.ToLower().Trim().Equals("bsc") || w.DegreeName.ToLower().Trim().Contains("bsc") || Fuzz.TokenInitialismRatio(w.DegreeName.ToLower().Trim(), "bsc") > 80))
+                            if (eduMatch)
                             {
                                 Compatibility += eduPer;
                                 percentage -= eduPer;
@@ -157,7 +166,7 @@ namespace HireSort.Repository.Implementation
                                     ResumeId = resumeId,
                                     CompanyName = job.Employer?.Name?.Normalized ?? "",
                                     Responsibility = job.Description,
-                                    Designation = job.JobTitle?.Normalized ?? "",
+                                    Designation = job.NormalizedProfession.Profession.Description,
                                     TotalExperience = TotalMonths,
                                     StartDate = job.StartDate.Date,
                                     EndDate = job.EndDate.Date,
@@ -217,6 +226,7 @@ namespace HireSort.Repository.Implementation
                 }
 
                 resume.IsFileParsed = true;
+                _dbContext.Update(resume).State = EntityState.Modified;
                 _dbContext.SaveChanges();
             }
             return CommonHelper.GetApiSuccessResponse("File Not Found.", 400);
