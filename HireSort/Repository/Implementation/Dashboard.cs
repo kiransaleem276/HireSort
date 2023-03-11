@@ -181,7 +181,7 @@ namespace HireSort.Repository.Implementation
                     {
                         JobDetailId = s.Id,
                         JobCode = s.JobCode.CodeName,
-                        Description = s.Description
+                        Description = s.Description,
                     }).ToList()
                 });
                 return CommonHelper.GetApiSuccessResponse(response);
@@ -204,8 +204,8 @@ namespace HireSort.Repository.Implementation
                     MobieNo = s.MobileNo,
                     Email = s.Email,
                     CompatiblePercentage = s.Compatibility,
-                    GPA = "3.8",
-                    InstituteMatch = "Yes",
+                    GPA = !String.IsNullOrEmpty(s.Gpa) ? s.Gpa : "Not Available",
+                    InstituteMatch = s.InstituteMatch,
                     Educations = s.Educations.Where(w => w.ResumeId == s.Id).Select(a => new CandidateEducation()
                     {
                         EduId = a.Id,
@@ -260,6 +260,37 @@ namespace HireSort.Repository.Implementation
                     return CommonHelper.GetApiSuccessResponse("Successfully Shorlisted.");
                 }
                 return CommonHelper.GetApiSuccessResponse("Resume Not Found.", 400);
+            }
+            catch (Exception ex)
+            {
+                string exceptionString = ex.Message + ex.StackTrace + (ex.InnerException != null ? ex.InnerException.ToString() : "");
+                return CommonHelper.GetApiSuccessResponse(exceptionString, 400);
+            }
+        }
+
+        public async Task<ApiResponseMessage> Login(string email, string password)
+        {
+            try
+            {
+                var login = await _dbContext.Logins.Where(w => w.Email == email).FirstOrDefaultAsync();
+                if (login != null)
+                {
+                    return CommonHelper.GetApiSuccessResponse("Email Not Found", 400);
+                }
+                else if (login?.Password != password)
+                {
+                    return CommonHelper.GetApiSuccessResponse("Password Doesn't Match", 400);
+                }
+                else if (login.Password == password && login.IsActive == false)
+                {
+                    return CommonHelper.GetApiSuccessResponse("Account is not active", 400);
+                }
+                else if (login.Password == password && login.IsActive == true)
+                {
+                    return CommonHelper.GetApiSuccessResponse("Login Successfully");
+                }
+                return CommonHelper.GetApiSuccessResponse("Login Unsuccessfully", 400);
+
             }
             catch (Exception ex)
             {
