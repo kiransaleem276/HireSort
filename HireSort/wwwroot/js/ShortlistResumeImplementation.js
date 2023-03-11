@@ -88,11 +88,11 @@ function _displayResumeList(data) {
             btnViewDetails.appendChild(textViewDetails);
 
 
-            let btnCheckCompInd = document.createElement('a');
-            btnCheckCompInd.classList.add('btn', 'btn-primary');
-            let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = '/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual'
-            btnCheckCompInd.appendChild(textCheckComp);
+            //let btnCheckCompInd = document.createElement('a');
+            //btnCheckCompInd.classList.add('btn', 'btn-primary');
+            //let textCheckComp = document.createTextNode("Check Compatibility");
+            //btnCheckCompInd.href = '/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual'
+            //btnCheckCompInd.appendChild(textCheckComp);
             
 
           
@@ -106,7 +106,7 @@ function _displayResumeList(data) {
             divCol.appendChild(divText);
 
             divBtnFlx.appendChild(btnViewDetails);
-            divBtnFlx.appendChild(btnCheckCompInd);
+            //divBtnFlx.appendChild(btnCheckCompInd);
 
             divColBtn.appendChild(divBtnFlx);
 

@@ -243,6 +243,7 @@ function _displayItemsVacancyList(data) {
 
     const tbl_vacancyList = document.getElementById('tbl_vacancyList');
 
+
     $("#tbl_vacancyList tr").remove();
     var status = data.statusCode
     var parsedata = data.successData
@@ -257,6 +258,7 @@ function _displayItemsVacancyList(data) {
             let td2 = document.createElement('td');
             let td3 = document.createElement('td');
             let td4 = document.createElement('td');
+            let td5 = document.createElement('td');
 
             var deptId = item.depertId;
             var vacancyId = item.vacancyId;
@@ -276,11 +278,26 @@ function _displayItemsVacancyList(data) {
 
             td4.appendChild(btnViewAllResume);
 
+            //View Shortlisted Button
+            let btnViewShortlisted = document.createElement('a');
+            let textViewShortlisted = document.createTextNode("View Shortlisted Resume");
+            btnViewShortlisted.href = `ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
+            btnViewShortlisted.className = "viewResume";
+            btnViewShortlisted.appendChild(textViewShortlisted);
+
+            td5.appendChild(btnViewShortlisted);
+
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
             tr.appendChild(td4);
+            tr.appendChild(td5);
             tbl_vacancyList.appendChild(tr);
+
+
+  
+
+             
         });
 
     }
@@ -293,3 +310,5 @@ function _displayItemsVacancyList(data) {
 
 
 }
+
+
