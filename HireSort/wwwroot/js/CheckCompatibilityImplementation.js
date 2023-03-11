@@ -60,6 +60,8 @@ function _displayResumeInd(data) {
     const progressBarInd = document.getElementById('progressBarInd');
     const resumeExp = document.getElementById('experience');
     const resumeEdu = document.getElementById('education');
+    const resumeSkills = document.getElementById('skills');
+    const resumeLinks = document.getElementById('links');
 
   
     var status = data.statusCode
@@ -117,6 +119,11 @@ function _displayResumeInd(data) {
 
             var parsedataExp = item.experience
             var parsedataEdu = item.educations
+
+            var parsedataSkills = item.skills
+            var parsedataLinks = item.links
+
+            //Experience
             parsedataExp.forEach(item => {
 
 
@@ -152,7 +159,7 @@ function _displayResumeInd(data) {
 
             });
 
-
+            //Education
             parsedataEdu.forEach(item => {
 
 
@@ -184,6 +191,33 @@ function _displayResumeInd(data) {
 
 
             });
+
+            //Skills
+            parsedataSkills.forEach(item => {
+
+                let txtSkillName = document.createElement('p');
+                txtSkillName.textContent = "Skill Name:\n" + item.skillName
+                let txtHR = document.createElement('hr');
+                resumeSkills.appendChild(txtSkillName);
+                resumeSkills.appendChild(txtHR);
+
+
+            });
+
+            //Links
+            parsedataLinks.forEach(item => {
+
+                let txtLinkName = document.createElement('a');
+                txtLinkName.textContent = "LinkedIn"; 
+                txtLinkName.href = item.link;
+                txtLinkName.target = "_blank";
+                let txtHR = document.createElement('hr');
+                resumeLinks.appendChild(txtLinkName);
+                resumeLinks.appendChild(txtHR);
+
+
+            });
+
         });
 
 

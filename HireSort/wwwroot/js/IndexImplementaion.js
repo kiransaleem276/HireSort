@@ -295,7 +295,7 @@ function _displayItemsVacancyList(data) {
             tbl_vacancyList.appendChild(tr);
 
 
-  
+       
 
              
         });

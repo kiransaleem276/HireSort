@@ -2,6 +2,7 @@
 
 var deptID;
 var vacID;
+
 $(document).ready(function () {
     //var queryString = window.location.href;
     ////window.location.href.slice(window.location.href.indexOf('?') + 1);
@@ -14,7 +15,7 @@ $(document).ready(function () {
     vacID = params.get('vacancyId');
 
     getResumeList();
-
+    //resumeShortlist();
 });
 
 function uploadFiles(inputId) {
@@ -78,6 +79,34 @@ function getResumeList() {
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function resumeShortlist(resumeId) {
+
+    //const uriCheckCompatibilty = `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`
+    //fetch(uriCheckCompatibilty)
+    //    .then(response => response.json())
+    //    .then(data => _displayCompatibilty(data))
+    //    .catch(error => console.error('Unable to get items.', error));
+
+    $.ajax(
+        {
+            //url: "/api/dashboard/uploadfile?jobId=1",
+            url: `/api/dashboard/resume-shorlisting?resumeId=${resumeId}`,
+            //data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function () {
+                getResumeList();
+                alert("Resume is shortlisted!");
+            }
+
+
+        }
+    );
+}
+
+
+
 function _displayResumeList(data) {
     const resumeList = document.getElementById('tab-1');
 
@@ -128,16 +157,16 @@ function _displayResumeList(data) {
             divColBtn.classList.add('col-sm-12','col-md-4', 'd-flex', 'flex-column', 'align-items-start', 'align-items-md-end', 'justify-content-center');
 
             let divBtnFlx = document.createElement('div');
-            divBtnFlx.classList.add('mb-3');
+            divBtnFlx.classList.add('mb-3','d-flex');
             divBtnFlx.setAttribute('style', 'width: 100%');
 
             //divBtnFlx.classList.add('d-flex', 'mb-3');
 
             let btnViewDetails = document.createElement('a');
-            btnViewDetails.classList.add('btn', 'btn-primary', 'me-3');
-            let textViewDetails = document.createTextNode("View Details");
-            btnViewDetails.href = '/ViewJobDetail/ViewJobDetail'
-            btnViewDetails.appendChild(textViewDetails);
+            btnViewDetails.classList.add('btn', 'btn-primary', 'ms-3');
+            //let textViewDetails = document.createTextNode("Shortlist");
+            //btnViewDetails.href = `javascript:resumeShortlist(${resumeId});`
+            //btnViewDetails.appendChild(textViewDetails);
 
 
             let btnCheckCompInd = document.createElement('a');
@@ -145,13 +174,13 @@ function _displayResumeList(data) {
             //var btnId =  resumeId;
             //btnCheckCompInd.id = btnId;
             let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${jobId}&resumeId=${resumeId}&departId=${deptID}`
+            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
           
             btnCheckCompInd.appendChild(textCheckComp);
             
 
             let progressMain = document.createElement('div');
-            /*progressMain.classList.add('d-none');*/
+            progressMain.classList.add('col-lg-8','mt-2');
             progressMain.setAttribute('style', 'height: 50%');
 
             let progressBar = document.createElement('div');
@@ -172,9 +201,24 @@ function _displayResumeList(data) {
                 progressBar.textContent = item.compatibility + '%';
                 
             }
+
             else {
                 progressMain.classList.add('d-none');
                 btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-block');
+            }
+
+
+            if (item.isShortListed == true) {
+                let textViewDetails = document.createTextNode("Shortlisted!");
+                btnViewDetails.href = `javascript:void(0);`
+                btnViewDetails.appendChild(textViewDetails);
+
+            }
+
+            else {
+                let textViewDetails = document.createTextNode("Shortlist");
+                btnViewDetails.href = `javascript:resumeShortlist(${resumeId});`
+                btnViewDetails.appendChild(textViewDetails);
             }
           
             txtEmail.appendChild(iconEmail);
@@ -186,11 +230,11 @@ function _displayResumeList(data) {
             divCol.appendChild(icon);
             divCol.appendChild(divText);
 
-            //divBtnFlx.appendChild(btnViewDetails);
+          
             divBtnFlx.appendChild(btnCheckCompInd);
             divBtnFlx.appendChild(progressMain);
             divColBtn.appendChild(divBtnFlx);
-
+            divBtnFlx.appendChild(btnViewDetails);
             divCardRow.appendChild(divCol);
 
             divCardRow.appendChild(divColBtn)
@@ -203,3 +247,6 @@ function _displayResumeList(data) {
         });
     }
 }
+
+
+

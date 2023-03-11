@@ -37,10 +37,12 @@ function _displayResumeList(data) {
     if (status == 200) {
         parsedata.forEach(item => {
 
+            var resumeId = item.resumeID;
            
             let divCardMain = document.createElement('div');
             divCardMain.classList.add('job-item', 'p-4', 'mb-4');
 
+           
             let divCardRow = document.createElement('div');
             divCardRow.classList.add('row', 'g-4');
 
@@ -84,7 +86,7 @@ function _displayResumeList(data) {
             let btnViewDetails = document.createElement('a');
             btnViewDetails.classList.add('btn', 'btn-primary', 'me-3');
             let textViewDetails = document.createTextNode("View Details");
-            btnViewDetails.href = '/ViewJobDetail/ViewJobDetail'
+            btnViewDetails.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
             btnViewDetails.appendChild(textViewDetails);
 
 

@@ -166,7 +166,7 @@ namespace HireSort.Repository.Implementation
                                     ResumeId = resumeId,
                                     CompanyName = job.Employer?.Name?.Normalized ?? "",
                                     Responsibility = job.Description,
-                                    Designation = job.NormalizedProfession.Profession.Description,
+                                    Designation = job.JobTitle?.Normalized ?? "",
                                     TotalExperience = TotalMonths,
                                     StartDate = job.StartDate.Date,
                                     EndDate = job.EndDate.Date,
@@ -198,7 +198,7 @@ namespace HireSort.Repository.Implementation
                             _dbContext.SaveChanges();
                         }
 
-                        if (parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Count > 0)
+                        if (parseResponse.Value.ResumeData.ContactInformation.WebAddresses!=null && parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Count > 0)
                         {
                             links.AddRange(parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Select(s => new Link()
                             {
