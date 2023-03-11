@@ -141,6 +141,10 @@ namespace HireSort.Repository.Implementation
                                 expPer += remainingPer;
                                 skillPer += remainingPer;
                             }
+                            if (String.IsNullOrEmpty(resume.InstituteMatch))
+                            {
+                                resume.InstituteMatch = "No";
+                            }
                             //if (educations.Any(w => w.DegreeName.ToLower().Trim().Equals("bsc") || w.DegreeName.ToLower().Trim().Contains("bsc") || Fuzz.TokenInitialismRatio(w.DegreeName.ToLower().Trim(), "bsc") > 80))
                             if (eduMatch)
                             {

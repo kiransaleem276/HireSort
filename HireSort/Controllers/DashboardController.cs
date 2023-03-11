@@ -120,5 +120,13 @@ namespace HireSort.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("login")]
+        public async Task<IActionResult> Login(string email,string password)
+        {
+            var result = _dashboard.Login(email, password);
+            if(result.)
+        }
     }
 }
