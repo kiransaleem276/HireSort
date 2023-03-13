@@ -216,6 +216,7 @@ namespace HireSort.Repository.Implementation
                         }
                         resume.Compatibility = Math.Round(Compatibility, 2).ToString();
                         resume.IsCompatibility = true;
+                        resume.IsFileParsed = true;
                         _dbContext.Update(resume).State = EntityState.Modified;
                         _dbContext.SaveChanges();
                     }

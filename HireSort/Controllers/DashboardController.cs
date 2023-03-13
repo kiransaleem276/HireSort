@@ -25,8 +25,12 @@ namespace HireSort.Controllers
         [Route("departments")]
         public async Task<IActionResult> GetDepartment()
         {
-            var response = await _dashboard.GetDepartment();
-            return Ok(response);
+            var result = await _dashboard.GetDepartment();
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
 
         }
 
@@ -34,50 +38,78 @@ namespace HireSort.Controllers
         [Route("vacancies-department-wise")]
         public async Task<IActionResult> GetVacanciesDepartmentWise([FromQuery] int departId)
         {
-            var response = await _dashboard.GetVacanciesDepartmentWise(departId);
-            return Ok(response);
+            var result = await _dashboard.GetVacanciesDepartmentWise(departId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("department-and-vacancies-details")]
         public async Task<IActionResult> GetDepartAndVacancyDetails([FromQuery] int departId, int vacancyId)
         {
-            var response = await _dashboard.GetDepartAndVacacyDetails(departId, vacancyId);
-            return Ok(response);
+            var result = await _dashboard.GetDepartAndVacacyDetails(departId, vacancyId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("resume-list")]
         public async Task<IActionResult> GetDepartAndVacancyDetails([FromQuery] int departId, int vacancyId, bool isShortListedResume = false)
         {
-            var response = await _dashboard.GetAllResumes(departId, vacancyId, isShortListedResume);
-            return Ok(response);
+            var result = await _dashboard.GetAllResumes(departId, vacancyId, isShortListedResume);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("depart-vacancy-count")]
         public async Task<IActionResult> GetDepartmentVacancyCount()
         {
-            var response = await _dashboard.GetDepartmentVacancyCount();
-            return Ok(response);
+            var result = await _dashboard.GetDepartmentVacancyCount();
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("depart-vacancy-list")]
         public async Task<IActionResult> GetDepartmentJobs([FromQuery] int departId)
         {
-            var response = await _dashboard.GetDepartmentJobs(departId);
-            return Ok(response);
+            var result = await _dashboard.GetDepartmentJobs(departId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("job-detail")]
         public async Task<IActionResult> GetJobDetail([FromQuery] int departId, int jobId)
         {
-            var response = await _dashboard.GetJobDetail(departId, jobId);
-            return Ok(response);
+            var result = await _dashboard.GetJobDetail(departId, jobId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpGet]
         [Route("resume-compatibitlity")]
         public async Task<IActionResult> GetResumeCompatibiltiy([FromQuery] int resumeId, int jobId)
         {
-            var response = await _dashboard.GetResumeCompatibiltiy(resumeId, jobId);
-            return Ok(response);
+            var result = await _dashboard.GetResumeCompatibiltiy(resumeId, jobId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpPost]
         [Route("uploadfile")]
@@ -89,6 +121,10 @@ namespace HireSort.Controllers
             if (file.Length > 0)
             {
                 var result = _resumeParsing.ResumeUpload(file, jobId);
+                if (result.Result.StatusCode == 400)
+                {
+                    return BadRequest(result);
+                }
                 return Ok(result);
             }
             return BadRequest();
@@ -99,6 +135,10 @@ namespace HireSort.Controllers
         {
             //var result = await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
             var result = await _resumeParsing.resumeCheckCompatibility(resumeId, jobId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
 
         }
@@ -106,8 +146,12 @@ namespace HireSort.Controllers
         [Route("resume-shorlisting")]
         public async Task<IActionResult> ResumeShortlisting(int resumeId)
         {
-            var response = await _dashboard.ResumeShorlisting(resumeId);
-            return Ok(response);
+            var result = await _dashboard.ResumeShorlisting(resumeId);
+            if (result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
         [HttpPost]
         [Route("test")]
@@ -116,6 +160,10 @@ namespace HireSort.Controllers
             if (files.Length > 0)
             {
                 var result = _resumeParsing.ResumeUpload(files, jobId);
+                if (result.Result.StatusCode == 400)
+                {
+                    return BadRequest(result);
+                }
                 return Ok(result);
             }
             return BadRequest();
@@ -126,7 +174,12 @@ namespace HireSort.Controllers
         public async Task<IActionResult> Login(string email,string password)
         {
             var result = _dashboard.Login(email, password);
-            if(result.)
+            if (result.Result.StatusCode == 400)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+
         }
     }
 }
