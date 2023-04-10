@@ -14,7 +14,7 @@
 
                 <div class="">
                     <div class="row g-3 my-4">
-                        <div class="col-7"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
+                        <div class="col-10"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
                         <div class="col-3 text-end d-none">  <button class="btn btn-primary w-50" >Upload Resume</button></div>
                         <div class="col-2 text-end">  <a asp-area="" asp-controller="" asp-action="" class="btn btn-primary w-100">Back</a></div>
                       @*  <input type="file" id="myFileInput" />*@
@@ -29,8 +29,8 @@
                        <form id="form" name="form" method="post" enctype="multipart/form-data">
                             <div class="buttons">
                                 <div class="upload-button">
-                                    <div class="label">Upload Resume</div>
-                                    <input id="files" name="files" type="file" size="50" onchange="uploadFiles('files');" />
+                                    @*<div class="label">Upload Resume</div>*@
+                                    <input id="files" name="files" type="file" size="50" onchange="uploadFiles('files');" class="form-control"/>
                                 </div>
                             </div>
                         </form>

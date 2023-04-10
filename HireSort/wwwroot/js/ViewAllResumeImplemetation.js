@@ -18,6 +18,14 @@ $(document).ready(function () {
     //resumeShortlist();
 });
 
+$('#files').on('change', function () {
+    //get the file name
+    var fileName = $(this).val();
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName);
+})
+
+
 function uploadFiles(inputId) {
     var input = document.getElementById(inputId);
     var files = input.files;
@@ -97,7 +105,7 @@ function resumeShortlist(resumeId) {
             type: "POST",
             success: function () {
                 getResumeList();
-                alert("Resume is shortlisted!");
+                location.reload();
             }
 
 
@@ -195,30 +203,36 @@ function _displayResumeList(data) {
 
             if (item.isCompatibilityCheck == true) {
                 progressMain.classList.add('d-block');
-                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-none');
+                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-none','col-lg-8');
                 var width = 'width:' + `${item.compatibility}` + '%';
                 progressBar.setAttribute('style', width);
                 progressBar.textContent = item.compatibility + '%';
+               
                 
             }
 
             else {
                 progressMain.classList.add('d-none');
-                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-block');
+                btnCheckCompInd.classList.add('btn', 'btn-primary', 'd-block', 'col-lg-8');
+                btnViewDetails.classList.add('d-none');
             }
 
 
             if (item.isShortListed == true) {
                 let textViewDetails = document.createTextNode("Shortlisted!");
+                btnViewDetails.setAttribute('style', 'background-color:#85d6bb');
                 btnViewDetails.href = `javascript:void(0);`
                 btnViewDetails.appendChild(textViewDetails);
 
             }
 
             else {
-                let textViewDetails = document.createTextNode("Shortlist");
+                let textViewDetails = document.createTextNode("\n Shortlist \n");
+                btnViewDetails.classList.add('px-4');               
                 btnViewDetails.href = `javascript:resumeShortlist(${resumeId});`
                 btnViewDetails.appendChild(textViewDetails);
+          
+
             }
           
             txtEmail.appendChild(iconEmail);

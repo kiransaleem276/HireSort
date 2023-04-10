@@ -51,7 +51,7 @@ using HireSort.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
 
     public class ViewAllResumeController : Controller
@@ -72,7 +72,7 @@ namespace HireSort.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

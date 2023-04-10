@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Folder Include="Areas\Admin\Data\" />
 		<Folder Include="Context\" />
 		<Folder Include="Resumes\" />
 	</ItemGroup>
@@ -27,6 +28,7 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	  <PackageReference Include="Sovren.SDK" Version="1.6.0" />
 	  <PackageReference Include="StringComparison" Version="1.0.3" />

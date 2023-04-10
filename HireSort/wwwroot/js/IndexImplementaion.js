@@ -272,7 +272,7 @@ function _displayItemsVacancyList(data) {
 
             let btnViewAllResume = document.createElement('a');
             let textViewAllResume = document.createTextNode("View All Resume");
-            btnViewAllResume.href = `ViewAllResume/ViewAllResume?departId=${deptId}&vacancyId=${vacancyId}`
+            btnViewAllResume.href = `Admin/ViewAllResume/ViewAllResume?departId=${deptId}&vacancyId=${vacancyId}`
             btnViewAllResume.className = "viewResume";
             btnViewAllResume.appendChild(textViewAllResume);
 

@@ -15,11 +15,40 @@ $(document).ready(function () {
     resumeID = params.get('resumeId');
     departID = params.get('departId');
 
-
+    getResumeInd();
     getCompatibilty();
 
 });
 
+
+
+
+function resumeShortlist(resumeId) {
+
+    //const uriCheckCompatibilty = `/api/dashboard/check-resume-compatibility?jobId=${jobID}&resumeId=${resumeID}`
+    //fetch(uriCheckCompatibilty)
+    //    .then(response => response.json())
+    //    .then(data => _displayCompatibilty(data))
+    //    .catch(error => console.error('Unable to get items.', error));
+
+    $.ajax(
+        {
+            //url: "/api/dashboard/uploadfile?jobId=1",
+            url: `/api/dashboard/resume-shorlisting?resumeId=${resumeID}`,
+            //data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function () {
+                
+                getCompatibilty();
+                location.reload();
+            }
+
+
+        }
+    );
+}
 
 function getCompatibilty() {
 
@@ -58,6 +87,8 @@ function getResumeInd() {
 function _displayResumeInd(data) {
     const resumeProfile = document.getElementById('candidateProfile');
     const progressBarInd = document.getElementById('progressBarInd');
+
+    const divCGPAandIns = document.getElementById('divCGPAandIns');
     const resumeExp = document.getElementById('experience');
     const resumeEdu = document.getElementById('education');
     const resumeSkills = document.getElementById('skills');
@@ -92,6 +123,13 @@ function _displayResumeInd(data) {
             let iconMobile = document.createElement('i');
             iconMobile.classList.add('fa', 'fa-mobile', 'text-primary', 'me-2');
 
+            let btnShortlist = document.createElement('a');
+            btnShortlist.classList.add('btn', 'btn-primary', 'ms-3');
+            let textShortlist = document.createTextNode("Shortlist");
+            btnShortlist.href = `javascript:resumeShortlist(${resumeID});`
+
+            btnShortlist.appendChild(textShortlist);
+
             txtEmail.appendChild(iconEmail);
             txtMobile.appendChild(iconMobile);
             divCardEmailNo.appendChild(txtEmail);
@@ -99,6 +137,7 @@ function _displayResumeInd(data) {
 
             resumeProfile.appendChild(divCardEmailNo);
             resumeProfile.appendChild(txtCandidate);
+            resumeProfile.appendChild(btnShortlist)
 
             let progressMain = document.createElement('div');
             progressMain.setAttribute('style', 'height: 5%');
@@ -116,6 +155,14 @@ function _displayResumeInd(data) {
             progressMain.appendChild(progressBar);
 
             progressBarInd.appendChild(progressMain);
+
+            let textGPA = document.createElement('p');
+            textGPA.textContent = "CGPA: \n" + item.gpa;
+            let textIns = document.createElement('p');
+            textIns.textContent = "Institute Match: \n" + item.instituteMatch;
+
+            divCGPAandIns.appendChild(textGPA)
+            divCGPAandIns.appendChild(textIns)
 
             var parsedataExp = item.experience
             var parsedataEdu = item.educations
