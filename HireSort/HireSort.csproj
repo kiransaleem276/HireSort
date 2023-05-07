@@ -11,6 +11,7 @@
 		<Folder Include="Areas\Admin\Data\" />
 		<Folder Include="Context\" />
 		<Folder Include="Resumes\" />
+		<Folder Include="Areas\Admin\Views\Shared\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,4 +35,7 @@
 	  <PackageReference Include="StringComparison" Version="1.0.3" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Areas\Admin\Views\Shared\" />
+	</ItemGroup>
 </Project>
