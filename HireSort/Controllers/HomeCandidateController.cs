@@ -6,24 +6,24 @@ using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-    public class HomeController : Controller
+    public class HomeCandidateController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeCandidateController> _logger;
         private IDashboard _dashboard;
         private ApiResponseMessage apiResponseMessage = null;
 
-        public HomeController(ILogger<HomeController> logger, IDashboard dashboard)
+        public HomeCandidateController(ILogger<HomeCandidateController> logger, IDashboard dashboard)
         {
             _logger = logger;
             _dashboard = dashboard;
         }
 
-        public IActionResult Index()
+        public IActionResult IndexCandidate()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult PrivacyCandidate()
         {
             return View();
         }

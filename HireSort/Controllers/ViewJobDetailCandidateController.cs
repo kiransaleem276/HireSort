@@ -4,16 +4,16 @@ using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-    public class ViewJobDetailController : Controller
+    public class ViewJobDetailCandidateController : Controller
     {
-        private readonly ILogger<ViewJobDetailController> _logger;
+        private readonly ILogger<ViewJobDetailCandidateController> _logger;
 
-        public ViewJobDetailController(ILogger<ViewJobDetailController> logger)
+        public ViewJobDetailCandidateController(ILogger<ViewJobDetailCandidateController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult ViewJobDetail()
+        public IActionResult ViewJobDetailCandidate()
         {
             return View();
         }

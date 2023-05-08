@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "Home";
+	ViewData["Title"] = "Welcome To HireSort";
 }
 
 
@@ -7,13 +7,13 @@
 <div class="container-fluid p-0">
 	<div class="owl-carousel header-carousel position-relative">
 		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/carousel-1.jpg" alt="">
+			<img class="img-fluid" src="img/candidateMainBg1.jpg" alt="">
 			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
 				<div class="container">
 					<div class="row justify-content-start">
 						<div class="col-10 col-lg-8">
 							<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
-							<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
+							<p class="fs-5 fw-medium text-white mb-4 pb-2">Finding your path towards success</p>
 							@* <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Add New Job</a>*@
 							@*<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>*@
 						</div>
@@ -22,13 +22,13 @@
 			</div>
 		</div>
 		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/carousel-2.jpg" alt="">
+			<img class="img-fluid" src="img/candidateMainBg2.jpg" alt="">
 			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
 				<div class="container">
 					<div class="row justify-content-start">
 						<div class="col-10 col-lg-8">
 							<h1 class="display-3 text-white animated slideInDown mb-4">Easy Hiring Solutions Made For You</h1>
-							<p class="fs-5 fw-medium text-white mb-4 pb-2">Connecting the right candidate to you.</p>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Finding your path towards success</p>
 							@*<a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"  asp-area="" asp-controller="Home" asp-action="AddNewJob">Add New Job</a>*@
 							@*<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>*@
 						</div>
@@ -95,12 +95,12 @@
 				<table class="table table-hover table-striped" id="tbl_vacancyList">
 				
 					<tbody>
-						@*	<tr>
+						<tr>
 							<th scope="row">1</th>
 							<td>Development (IT)</td>
 							<td>Web Developer</td>
-							<td><a asp-area="" asp-controller="ViewAllResume" asp-action="ViewAllResume">View All Resumes</a></td>
-							</tr>*@
+							<td><a asp-area="" asp-controller="ViewJobDetailCandidate" asp-action="ViewJobDetailCandidate">View Job Detail</a></td>
+							</tr>
 
 					</tbody>
 				</table>
@@ -110,46 +110,12 @@
 	</div>
 </div>
 <!-- Category End -->
-<!-- Category Start -->
-<div class="container-xxl py-5">
-	<div class="container">
-		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">Explore By Department</h1>
-		<div class="row g-4 justify-content-center" id="vacancy_Count">
-			@*	<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
-				<div class="cat-item rounded p-4" >
-				<i class="fa fa-3x fa-tasks text-primary mb-4"></i>
-				<h6 class="mb-3">Project Management</h6>
-				<a href=""><p class="mb-0">123 Vacancy</p></a>
-				</div>
-				</div>*@
 
-			@*<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-				<div class="cat-item rounded p-4" href="">
-				<i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-				<h6 class="mb-3">Human Resource</h6>
-				<a href="" class="vacancy_Count"><p class="mb-0">123 Vacancy</p></a>
-				</div>
-				</div>
-
-				<div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-				<div class="cat-item rounded p-4" href="">
-				<i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
-				<h6 class="mb-3">Information Technology</h6>
-				<a href="" class="vacancy_Count"><p class="mb-0">123 Vacancy</p></a>
-				</div>*@
-		</div>
-
-
-
-	</div>
-</div>
-
-<!-- Category End -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
 
-<script src="~/js/IndexImplementaion.js"></script>
+<script src="~/js/IndexCandidateImplementaion.js"></script>
 <script>
 	//const uriDept = 'api/Dashboard/departments';
 	//const uriVacancy = 'api/Dashboard/vacancies-department-wise?departId=1';
