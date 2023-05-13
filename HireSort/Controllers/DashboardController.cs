@@ -13,7 +13,6 @@ namespace HireSort.Controllers
 
         private readonly ILogger<HomeController> _logger;
         private IDashboard _dashboard;
-        private ApiResponseMessage apiResponseMessage = null;
         private readonly IResumeParsing _resumeParsing;
         public DashboardController(ILogger<HomeController> logger, IDashboard dashboard, IResumeParsing resumeParsing)
         {
@@ -180,8 +179,23 @@ namespace HireSort.Controllers
                 return BadRequest(result);
             }
             return Ok(result);
-
         }
-
+        [HttpPost]
+        [Route("apply-now")]
+        public async Task<IActionResult> ApplyNow(IFormFile file, int jobId,string firstName, string lastName,string email,string coverLetter)
+        {
+            //foreach (IFormFile file in files)
+            //{
+            if (file.Length > 0)
+            {
+                var result = _resumeParsing.ResumeUpload(file, jobId,firstName,lastName,email,coverLetter);
+                if (result.Result.StatusCode == 400)
+                {
+                    return BadRequest(result);
+                }
+                return Ok(result);
+            }
+            return BadRequest();
+        }
     }
 }

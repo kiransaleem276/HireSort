@@ -463,6 +463,8 @@ namespace HireSort.Context
                     .HasMaxLength(50)
                     .HasColumnName("COMPATIBILITY");
 
+                entity.Property(e => e.CoverLetter).HasColumnName("COVER_LETTER");
+
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
                     .HasColumnName("EMAIL");

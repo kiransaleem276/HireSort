@@ -72,7 +72,6 @@ function _displayItemsDept(data) {
 }
 
 $("#department").change(function () {
-  
     getItemsVacancy();
     ddl_Vac.empty();
 

@@ -10,7 +10,6 @@ namespace HireSort.Areas.Admin.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IDashboard _dashboard;
-        private ApiResponseMessage apiResponseMessage = null;
 
         public HomeController(ILogger<HomeController> logger, IDashboard dashboard)
         {
@@ -27,11 +26,6 @@ namespace HireSort.Areas.Admin.Controllers
         {
             return View();
         }
-
-        //public IActionResult AddNewJob()
-        //{
-        //    retfdsssddddssssssssssssurndddd View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

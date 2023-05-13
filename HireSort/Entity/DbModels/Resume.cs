@@ -32,6 +32,7 @@ namespace HireSort.Entity.DbModels
         public bool? IsCompatibility { get; set; }
         public string? Gpa { get; set; }
         public string? InstituteMatch { get; set; }
+        public string? CoverLetter { get; set; }
 
         public virtual Client Client { get; set; } = null!;
         public virtual Job Job { get; set; } = null!;

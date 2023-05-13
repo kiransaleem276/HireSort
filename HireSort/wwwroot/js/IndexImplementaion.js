@@ -207,7 +207,7 @@ function _displayItemsVacancyCount(data) {
 
             var deptIDVacancyList = item.depatId;
             let btnVacancyCount = document.createElement('a');
-            btnVacancyCount.href = `ViewDeptVacancy/ViewDeptVacancy?departId=${deptIDVacancyList}`
+            btnVacancyCount.href = `Admin/ViewDeptVacancy/ViewDeptVacancy?departId=${deptIDVacancyList}`
             
 
             let lblVacancyCount = document.createElement('p');
@@ -281,7 +281,7 @@ function _displayItemsVacancyList(data) {
             //View Shortlisted Button
             let btnViewShortlisted = document.createElement('a');
             let textViewShortlisted = document.createTextNode("View Shortlisted Resume");
-            btnViewShortlisted.href = `ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
+            btnViewShortlisted.href = `Admin/ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
             btnViewShortlisted.className = "viewResume";
             btnViewShortlisted.appendChild(textViewShortlisted);
 
