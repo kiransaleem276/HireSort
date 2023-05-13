@@ -30,6 +30,7 @@ function getJobDetails() {
 }
 
 function _displayJobDetails(data) {
+    debugger;
     const jobdetailist = document.getElementById('jobDesc');
     const jobTenureList = document.getElementById('jobSummary');
     const jobResponsibility = document.getElementById('jobResponsibility');
@@ -41,8 +42,7 @@ function _displayJobDetails(data) {
     if (status == 200) {
         parsedata.forEach(item => {
 
-         
-        //Job Desc
+            //Job Desc
             let jobDescription = document.createElement('h3');
             jobDescription.classList.add('mb-3');
             jobDescription.textContent = item.jobName;
@@ -54,7 +54,7 @@ function _displayJobDetails(data) {
             iconArr1.classList.add('fa', 'fa-angle-right', 'text-primary', 'me-2');
 
             startDate.appendChild(iconArr1);
-            startDate.textContent = "Start Date:\n" +item.jobStartDate;
+            startDate.textContent = "Start Date:\n" + item.jobStartDate;
             jobTenureList.appendChild(startDate);
 
             //END Date
@@ -88,7 +88,7 @@ function _displayJobDetails(data) {
 
             //Job Description in Detail
             var parsedataJobDesc = item.jobDesc
-          
+
             parsedataJobDesc.forEach(item => {
                 //Job Responsibility
 
@@ -99,15 +99,8 @@ function _displayJobDetails(data) {
 
                 let reponsibilityDetail = document.createElement('p');
                 reponsibilityDetail.textContent = item.description;
-
                 jobResponsibility.appendChild(reponsibilityDetail);
-
             });
-
-
         });
     }
 }
-
-
-
