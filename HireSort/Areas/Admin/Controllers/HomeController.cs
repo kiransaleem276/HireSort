@@ -30,7 +30,7 @@ namespace HireSort.Areas.Admin.Controllers
 
         //public IActionResult AddNewJob()
         //{
-        //    return View();
+        //    retfdsssssssssssssssurn View();
         //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
