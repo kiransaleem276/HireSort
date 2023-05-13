@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class ViewDeptVacancyController : Controller
+    public class ShortlistResumeController : Controller
     {
-        private readonly ILogger<ViewDeptVacancyController> _logger;
+        private readonly ILogger<ShortlistResumeController> _logger;
 
-        public ViewDeptVacancyController(ILogger<ViewDeptVacancyController> logger)
+        public ShortlistResumeController(ILogger<ShortlistResumeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult ViewDeptVacancy()
+        public IActionResult ShortlistResume()
         {
             return View();
         }

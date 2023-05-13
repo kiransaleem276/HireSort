@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class CheckCompatibiltyIndividualController : Controller
+    public class ViewDeptVacancyController : Controller
     {
-        private readonly ILogger<CheckCompatibiltyIndividualController> _logger;
+        private readonly ILogger<ViewDeptVacancyController> _logger;
 
-        public CheckCompatibiltyIndividualController(ILogger<CheckCompatibiltyIndividualController> logger)
+        public ViewDeptVacancyController(ILogger<ViewDeptVacancyController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult CheckCompatibiltyIndividual()
+        public IActionResult ViewDeptVacancy()
         {
             return View();
         }

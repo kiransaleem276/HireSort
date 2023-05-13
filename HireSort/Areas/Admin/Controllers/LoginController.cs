@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class ViewJobDetailController : Controller
+    public class LoginController : Controller
     {
-        private readonly ILogger<ViewJobDetailController> _logger;
+        private readonly ILogger<LoginController> _logger;
 
-        public ViewJobDetailController(ILogger<ViewJobDetailController> logger)
+        public LoginController(ILogger<LoginController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult ViewJobDetail()
+        public IActionResult Login()
         {
             return View();
         }

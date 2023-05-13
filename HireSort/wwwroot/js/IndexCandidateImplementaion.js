@@ -27,8 +27,8 @@ $(document).ready(function () {
         document.getElementById("btnAddNew").style.display = "none";
         document.getElementById("btnHome").style.display = "none";
     }
-        //getItemsDept();
-        //getItemsVacancyList();
+        getItemsDept();
+        getItemsVacancyList();
     //getItemsVacancyCount();
 
   
@@ -72,7 +72,6 @@ function _displayItemsDept(data) {
 }
 
 $("#department").change(function () {
-  
     getItemsVacancy();
     ddl_Vac.empty();
 

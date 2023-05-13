@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class ShortlistResumeController : Controller
+    public class CheckCompatibiltyIndividualController : Controller
     {
-        private readonly ILogger<ShortlistResumeController> _logger;
+        private readonly ILogger<CheckCompatibiltyIndividualController> _logger;
 
-        public ShortlistResumeController(ILogger<ShortlistResumeController> logger)
+        public CheckCompatibiltyIndividualController(ILogger<CheckCompatibiltyIndividualController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult ShortlistResume()
+        public IActionResult CheckCompatibiltyIndividual()
         {
             return View();
         }

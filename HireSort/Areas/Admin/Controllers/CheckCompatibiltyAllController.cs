@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class LoginController : Controller
+    public class CheckCompatibiltyAllController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<CheckCompatibiltyAllController> _logger;
 
-        public LoginController(ILogger<LoginController> logger)
+        public CheckCompatibiltyAllController(ILogger<CheckCompatibiltyAllController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Login()
+        public IActionResult CheckCompatibiltyAll()
         {
             return View();
         }

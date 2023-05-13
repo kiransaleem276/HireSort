@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace HireSort.Controllers
+namespace HireSort.Areas.Admin.Controllers
 {
-    public class CheckCompatibiltyAllController : Controller
+    public class AddNewJobController : Controller
     {
-        private readonly ILogger<CheckCompatibiltyAllController> _logger;
+        private readonly ILogger<AddNewJobController> _logger;
 
-        public CheckCompatibiltyAllController(ILogger<CheckCompatibiltyAllController> logger)
+        public AddNewJobController(ILogger<AddNewJobController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult CheckCompatibiltyAll()
+        public IActionResult AddNewJob()
         {
             return View();
         }

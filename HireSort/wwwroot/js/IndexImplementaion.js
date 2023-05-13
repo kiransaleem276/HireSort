@@ -281,7 +281,7 @@ function _displayItemsVacancyList(data) {
             //View Shortlisted Button
             let btnViewShortlisted = document.createElement('a');
             let textViewShortlisted = document.createTextNode("View Shortlisted Resume");
-            btnViewShortlisted.href = `ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
+            btnViewShortlisted.href = `Admin/ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
             btnViewShortlisted.className = "viewResume";
             btnViewShortlisted.appendChild(textViewShortlisted);
 
