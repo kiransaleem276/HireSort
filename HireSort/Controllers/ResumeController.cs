@@ -38,7 +38,6 @@ using System.Diagnostics;
 
 namespace HireSort.Controllers
 {
-
     public class ResumeController : Controller
     {
         private readonly ILogger<ResumeController> _logger;

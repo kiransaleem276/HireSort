@@ -10,8 +10,6 @@ namespace HireSort.Controllers
 	{
 		private readonly IResumeParsing _resumeParsing;
 
-		private readonly ILogger<ResumeViewController> _logger;
-
 		public ResumeViewController(IResumeParsing resumeParsing)
 		{
 			_resumeParsing = resumeParsing;
@@ -22,14 +20,11 @@ namespace HireSort.Controllers
 
 		public Task UploadFiles(IFormFile file, int jobId)
 		{
-			//foreach (IFormFile file in files)
-			//{
 			if (file.Length > 0)
 			{
 				var result = _resumeParsing.ResumeUpload(file, jobId);
 			}
 			return Task.CompletedTask;
 		}
-
 	}
 }

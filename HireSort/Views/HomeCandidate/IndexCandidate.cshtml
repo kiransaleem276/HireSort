@@ -1,113 +1,93 @@
 ﻿@{
-	ViewData["Title"] = "Welcome To HireSort";
+    ViewData["Title"] = "Welcome To HireSort";
 }
-
 
 <!-- Carousel Start -->
 <div class="container-fluid p-0">
-	<div class="owl-carousel header-carousel position-relative">
-		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/candidateMainBg1.jpg" alt="">
-			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-				<div class="container">
-					<div class="row justify-content-start">
-						<div class="col-10 col-lg-8">
-							<h1 class="display-3 text-white animated slideInDown mb-4">Finding, Connecting, Building Success</h1>
-							<p class="fs-5 fw-medium text-white mb-4 pb-2">Finding your path towards success</p>
-							@* <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Add New Job</a>*@
-							@*<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>*@
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="owl-carousel-item position-relative">
-			<img class="img-fluid" src="img/candidateMainBg2.jpg" alt="">
-			<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-				<div class="container">
-					<div class="row justify-content-start">
-						<div class="col-10 col-lg-8">
-							<h1 class="display-3 text-white animated slideInDown mb-4">Finding, Connecting, Building Success</h1>
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="img/candidateMainBg1.jpg" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h1 class="display-3 text-white animated slideInDown mb-4">Finding, Connecting, Building Success</h1>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Finding your path towards success</p>
-							@*<a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"  asp-area="" asp-controller="Home" asp-action="AddNewJob">Add New Job</a>*@
-							@*<a class="btn btn-secondary py-md-3 px-md-5 animated slideInRight" asp-area="" asp-controller="ShortlistResume" asp-action="ShortlistResume">View Shortlisted Resumes</a>*@
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="img/candidateMainBg2.jpg" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h1 class="display-3 text-white animated slideInDown mb-4">Finding, Connecting, Building Success</h1>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Finding your path towards success</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Carousel End -->
 <!-- Search Start -->
 <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-	<div class="container">
-		<div class="row g-2">
-			<div class="col-md-10">
-				<div class="row g-2">
-
-					<div class="col-md-6">
-						@*<select id="department" name="department" class="form-select border-0" onchange="myFunction()">*@
-						<select id="department" name="department" class="form-select border-0" >
-							<option value="0">Please Select</option>
-							<!--<option selected>Department</option>
-							<option value="1">Development (IT)</option>
-							<option value="2">Human Resource</option>
-							<option value="3">Finance</option>-->
-						</select>
-					</div>
-					<div class="col-md-6">
-						<select id="vacancy" name="vacancy" class="form-select border-0" > 
-							<option value="0">Please Select</option>
-							@*<option selected>Vacancies</option>
-								<option value="1">Web Developer</option>
-								<option value="2">Web Designer</option>
-								<option value="3">Finance</option>*@
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<button class="btn btn-dark border-0 w-100" id="btn_Search" >Search</button>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <select id="department" name="department" class="form-select border-0">
+                            <option value="0">Please Select</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select id="vacancy" name="vacancy" class="form-select border-0">
+                            <option value="0">Please Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-dark border-0 w-100" id="btn_Search">Search</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Search End -->
 <!-- Category Start -->
 <div class="container-xxl py-5">
-	<div class="container">
-		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Find By Vacancy</h1>
-		<div class="row">
-			<div class="col-lg-12">
-
-				<table class="table text-end mb-0">
-					<thead>
-						<tr>
-							<th width="12%">S No.</th>
-							<th width="25%">Departments</th>
-							<th width="30%">Job Vacancies</th>
-							<th colspan="2" style="text-align:center">Action</th>
-						</tr>
-					</thead>
-					
-				</table>
-				<table class="table table-hover table-striped" id="tbl_vacancyList">
-				
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Development (IT)</td>
-							<td>Web Developer</td>
-							<td><a asp-area="" asp-controller="ViewJobDetailCandidate" asp-action="ViewJobDetailCandidate">View Job Detail</a></td>
-							</tr>
-
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-	</div>
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Find By Vacancy</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table text-end mb-0">
+                    <thead>
+                        <tr>
+                            <th width="12%">S No.</th>
+                            <th width="25%">Departments</th>
+                            <th width="30%">Job Vacancies</th>
+                            <th colspan="2" style="text-align:center">Action</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="table table-hover table-striped" id="tbl_vacancyList">
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Development (IT)</td>
+                            <td>Web Developer</td>
+                            <td><a asp-area="" asp-controller="ViewJobDetailCandidate" asp-action="ViewJobDetailCandidate">View Job Detail</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Category End -->
 
@@ -116,54 +96,48 @@
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
 
 <script src="~/js/IndexCandidateImplementaion.js"></script>
-<script>
-	//const uriDept = 'api/Dashboard/departments';
-	//const uriVacancy = 'api/Dashboard/vacancies-department-wise?departId=1';
-	//const uriVacancyList = 'api/Dashboard/department-and-vacancies-details';
-	//const uriVacancyCount = 'api/Dashboard/depart-vacancy-count';
-
-</script>
 
 <style>
-	table {
-		border-collapse: collapse;
-		border-spacing: 0;
-		width: 100%;
-		border: 1px solid #ddd;
-	}
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
 
-	th, td {
-		text-align: left;
-		padding: 0.5rem 0.5rem;
-	}
+    th, td {
+        text-align: left;
+        padding: 0.5rem 0.5rem;
+    }
 
-	tr:nth-child(even) {
-		background-color: #f2f2f2;
-	}
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-	tr {
-		transition: 0.3s ease-in-out;
-	}
+    tr {
+        transition: 0.3s ease-in-out;
+    }
 
-		tr:hover {
-			background-color: #deebfc;
-		}
+        tr:hover {
+            background-color: #deebfc;
+        }
 
-		td:first-child{
-			width:12%;
-		}
-		td:nth-child(2){
-			width:25%;
-		}
+    td:first-child {
+        width: 12%;
+    }
 
-	td:nth-child(3) {
-		width: 30%;
-	}
+    td:nth-child(2) {
+        width: 25%;
+    }
 
-	thead{
-		background-color: #85d6bb;
-		color:#000000;
-	}
+    td:nth-child(3) {
+        width: 30%;
+    }
+
+    thead {
+        background-color: #85d6bb;
+        color: #000000;
+    }
 </style>
 
 

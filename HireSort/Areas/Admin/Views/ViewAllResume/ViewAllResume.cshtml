@@ -2,103 +2,48 @@
     ViewData["Title"] = "View All Resumes";
 }
 
-
-
 <!-- View All Resume - Vacancy Wise  -->
 
 <div class="container-xxl py-5 mt-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="row gy-5 gx-4">
             <div class="col-lg-12">
-
-
                 <div class="">
                     <div class="row g-3 my-4">
                         <div class="col-10"><h4 class="mb-4">View All Resumes - Vacancy Wise</h4></div>
-                        <div class="col-3 text-end d-none">  <button class="btn btn-primary w-50" >Upload Resume</button></div>
+                        <div class="col-3 text-end d-none">  <button class="btn btn-primary w-50">Upload Resume</button></div>
                         <div class="col-2 text-end">  <a asp-area="" asp-controller="" asp-action="" class="btn btn-primary w-100">Back</a></div>
-                      @*  <input type="file" id="myFileInput" />*@
-                      @*@Html.TextBoxFor(m => m.File, new { type = "file", @multiple = "multiple"  })*@
-
-                       
-
-                     
- 
                     </div>
                     <hr />
-                       <form id="form" name="form" method="post" enctype="multipart/form-data">
-                            <div class="buttons">
-                                <div class="upload-button">
-                                    @*<div class="label">Upload Resume</div>*@
-                                    <input id="files" name="files" type="file" size="50" onchange="uploadFiles('files');" class="form-control"/>
-                                </div>
+                    <form id="form" name="form" method="post" enctype="multipart/form-data">
+                        <div class="buttons">
+                            <div class="upload-button">
+                                <input id="files" name="files" type="file" size="50" onchange="uploadFiles('files');" class="form-control" />
                             </div>
-                        </form>
+                        </div>
+                    </form>
                     <div class="row g-3 my-4 d-none">
-                            <div class="col-6 text-end d-none">
-                                <button class="btn btn-primary w-50">Upload Resume</button>
-                            </div>
-                              <div class="col-6">
+                        <div class="col-6 text-end d-none">
+                            <button class="btn btn-primary w-50">Upload Resume</button>
+                        </div>
+                        <div class="col-6">
                             <button class="btn btn-primary w-50" onclick="location.href='@Url.Action("CheckCompatibiltyAll", "CheckCompatibiltyAll")';return false;">Check Compatibility</button>
-                            </div>
-
-                          
-
-                            </div>
-                     <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+                        </div>
+                    </div>
+                    <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
 
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane fade show p-0 active">
-                               @* <div class="job-item p-4 mb-4">
-                                    <div class="row g-4">
-                                        <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                            <i class="fa fa-3x fa-user text-primary mb-4"></i>
-                                            <div class="text-start ps-4">
-                                                <h5 class="mb-3">Teresa Butler</h5>
-                                                <span class="text-truncate me-3"><i class="fa fa-envelope text-primary me-2"></i>terasa@gmail.com</span>
-                                                <span class="text-truncate me-3"><i class="fa fa-mobile text-primary me-2"></i>+14842989029</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                            <div class="d-flex mb-3">
-                                                <a class="btn btn-primary me-3" href="">View Detail</a>
-                                                <a class="btn btn-primary" asp-area="" asp-controller="CheckCompatibiltyIndividual" asp-action="CheckCompatibiltyIndividual">Check Compatibility</a>
-                                            </div>*@
-                                           @* <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date of Shortlist: 01 Jan, 2045</small>*@
-                                       @* </div>
-                                    </div>
-                                </div>*@
-                             
-                                @*<a class="btn btn-primary py-3 px-5" href="">Browse More Resumes</a>*@
                             </div>
-
                         </div>
-                    </div>'
-                 
+                    </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
 <!-- View All Resume - Vacancy Wise -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
-
-
-
 <script src="~/js/ViewAllResumeImplemetation.js"></script>
-@*
-<style>
-    #myFileInput {
-        display: none;
-    }
-*@
-
-
-
-@*</style>*@
 
 

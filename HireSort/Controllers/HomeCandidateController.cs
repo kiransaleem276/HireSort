@@ -10,7 +10,6 @@ namespace HireSort.Controllers
     {
         private readonly ILogger<HomeCandidateController> _logger;
         private IDashboard _dashboard;
-        private ApiResponseMessage apiResponseMessage = null;
 
         public HomeCandidateController(ILogger<HomeCandidateController> logger, IDashboard dashboard)
         {
@@ -28,16 +27,10 @@ namespace HireSort.Controllers
             return View();
         }
 
-        //public IActionResult AddNewJob()
-        //{
-        //    return View();
-        //}
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

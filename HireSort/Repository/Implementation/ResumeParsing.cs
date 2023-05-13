@@ -22,7 +22,7 @@ namespace HireSort.Repository.Implementation
             _dbContext = dbContext;
         }
 
-        public async Task<ApiResponseMessage> ResumeUpload(IFormFile file, int jobId)
+        public async Task<ApiResponseMessage> ResumeUpload(IFormFile file, int jobId, string firstName = null, string lastName = null, string email = null, string coverLetter = null)
         {
             try
             {
@@ -32,6 +32,10 @@ namespace HireSort.Repository.Implementation
                 resume.JobId = jobId;
                 resume.FileExt = System.IO.Path.GetExtension(file.FileName);
                 resume.ClientId = clientId;
+                resume.FirstName = firstName;
+                resume.LastName = lastName;
+                resume.Email = email;
+                resume.CoverLetter = coverLetter;
                 _dbContext.Resumes.Add(resume);
                 _dbContext.SaveChanges();
 
@@ -202,7 +206,7 @@ namespace HireSort.Repository.Implementation
                             _dbContext.SaveChanges();
                         }
 
-                        if (parseResponse.Value.ResumeData.ContactInformation.WebAddresses!=null && parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Count > 0)
+                        if (parseResponse.Value.ResumeData.ContactInformation.WebAddresses != null && parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Count > 0)
                         {
                             links.AddRange(parseResponse.Value.ResumeData.ContactInformation.WebAddresses.Select(s => new Link()
                             {

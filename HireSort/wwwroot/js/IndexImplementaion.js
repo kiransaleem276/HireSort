@@ -207,7 +207,7 @@ function _displayItemsVacancyCount(data) {
 
             var deptIDVacancyList = item.depatId;
             let btnVacancyCount = document.createElement('a');
-            btnVacancyCount.href = `ViewDeptVacancy/ViewDeptVacancy?departId=${deptIDVacancyList}`
+            btnVacancyCount.href = `Admin/ViewDeptVacancy/ViewDeptVacancy?departId=${deptIDVacancyList}`
             
 
             let lblVacancyCount = document.createElement('p');
