@@ -86,7 +86,7 @@ function _displayResumeList(data) {
             let btnViewDetails = document.createElement('a');
             btnViewDetails.classList.add('btn', 'btn-primary', 'me-3');
             let textViewDetails = document.createTextNode("View Details");
-            btnViewDetails.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
+            btnViewDetails.href = `/Admin/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
             btnViewDetails.appendChild(textViewDetails);
 
 

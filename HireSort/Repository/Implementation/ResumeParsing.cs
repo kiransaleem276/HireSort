@@ -92,7 +92,7 @@ namespace HireSort.Repository.Implementation
                         var educations = new List<Education>();
                         var technicalSkills = new List<TechnicalSkill>();
                         var links = new List<Link>();
-                        if (parseResponse.Value.ResumeData.Education.EducationDetails.Count > 0)
+                        if (parseResponse.Value.ResumeData.Education?.EducationDetails?.Count > 0)
                         {
                             bool eduMatch = false;
                             foreach (var edu in parseResponse.Value.ResumeData.Education.EducationDetails)

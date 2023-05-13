@@ -182,7 +182,7 @@ function _displayResumeList(data) {
             //var btnId =  resumeId;
             //btnCheckCompInd.id = btnId;
             let textCheckComp = document.createTextNode("Check Compatibility");
-            btnCheckCompInd.href = `/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
+            btnCheckCompInd.href = `/Admin/CheckCompatibiltyIndividual/CheckCompatibiltyIndividual?jobId=${vacID}&resumeId=${resumeId}&departId=${deptID}`
           
             btnCheckCompInd.appendChild(textCheckComp);
             
