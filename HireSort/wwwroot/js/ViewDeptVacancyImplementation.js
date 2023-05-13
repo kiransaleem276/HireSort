@@ -80,7 +80,7 @@ function _displayVacancyList(data) {
             let btnViewDetails = document.createElement('a');
             btnViewDetails.classList.add('btn', 'btn-primary', 'me-3');
             let textViewDetails = document.createTextNode("View");
-            btnViewDetails.href = '/ViewJobDetail/ViewJobDetail'
+            btnViewDetails.href = '/Admin/ViewJobDetail/ViewJobDetail'
             btnViewDetails.appendChild(textViewDetails);
 
 
@@ -106,7 +106,6 @@ function _displayVacancyList(data) {
             divCardMain.appendChild(divCardRow);
 
             vacancyList.appendChild(divCardMain);
-
 
         });
     }

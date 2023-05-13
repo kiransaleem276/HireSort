@@ -177,7 +177,9 @@ namespace HireSort.Repository.Implementation
                     JobName = s.JobName,
                     JobStartDate = s.StartDate.ToString(_dateFormat),
                     JobEndDate = (s.EndDate != null) ? Convert.ToDateTime(s.EndDate).ToString(_dateFormat) : null,
-                    JobDesc = s.JobDetails.Select(s => new JobDescription
+                    JobShift = s.JobDetails.FirstOrDefault(a => a.JobCode.CodeName == "Job Shift").Description ?? null,
+                    JobType = s.JobDetails.FirstOrDefault(b => b.JobCode.CodeName == "Job Type").Description ?? null,
+                    JobDesc = s.JobDetails.Where(w => w.JobCode.CodeName != "Job Shift" && w.JobCode.CodeName != "Job Type").Select(s => new JobDescription
                     {
                         JobDetailId = s.Id,
                         JobCode = s.JobCode.CodeName,
