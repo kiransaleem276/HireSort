@@ -1,4 +1,5 @@
-﻿using HireSort.Models;
+﻿using HireSort.Areas.Admin.Controllers;
+using HireSort.Models;
 using HireSort.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

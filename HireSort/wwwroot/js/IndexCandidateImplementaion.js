@@ -27,9 +27,9 @@ $(document).ready(function () {
         document.getElementById("btnAddNew").style.display = "none";
         document.getElementById("btnHome").style.display = "none";
     }
-        getItemsDept();
-        getItemsVacancyList();
-    getItemsVacancyCount();
+        //getItemsDept();
+        //getItemsVacancyList();
+    //getItemsVacancyCount();
 
   
       
