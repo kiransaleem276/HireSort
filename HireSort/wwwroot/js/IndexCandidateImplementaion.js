@@ -27,8 +27,8 @@ $(document).ready(function () {
         document.getElementById("btnAddNew").style.display = "none";
         document.getElementById("btnHome").style.display = "none";
     }
-        //getItemsDept();
-        //getItemsVacancyList();
+        getItemsDept();
+       getItemsVacancyList();
     //getItemsVacancyCount();
 
   
@@ -280,22 +280,15 @@ function _displayItemsVacancyList(data) {
             td3.textContent = item.vacancyName;
             td3.id = item.vacancyId;
 
-            let btnViewAllResume = document.createElement('a');
-            let textViewAllResume = document.createTextNode("View All Resume");
-            btnViewAllResume.href = `Admin/ViewAllResume/ViewAllResume?departId=${deptId}&vacancyId=${vacancyId}`
-            btnViewAllResume.className = "viewResume";
-            btnViewAllResume.appendChild(textViewAllResume);
+            let btnViewJob= document.createElement('a');
+            let textViewJob = document.createTextNode("View Job Detail");
+            btnViewJob.href = `ViewJobDetailCandidate/ViewJobDetailCandidate?departId=${deptId}&vacancyId=${vacancyId}`
+            btnViewJob.className = "viewResume";
+            btnViewJob.appendChild(textViewJob);
 
-            td4.appendChild(btnViewAllResume);
+            td4.appendChild(btnViewJob);
 
-            //View Shortlisted Button
-            let btnViewShortlisted = document.createElement('a');
-            let textViewShortlisted = document.createTextNode("View Shortlisted Resume");
-            btnViewShortlisted.href = `ShortlistResume/ShortlistResume?departId=${deptId}&vacancyId=${vacancyId}`
-            btnViewShortlisted.className = "viewResume";
-            btnViewShortlisted.appendChild(textViewShortlisted);
-
-            td5.appendChild(btnViewShortlisted);
+           
 
             tr.appendChild(td1);
             tr.appendChild(td2);
