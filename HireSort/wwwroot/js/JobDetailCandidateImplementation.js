@@ -20,6 +20,40 @@ $(document).ready(function () {
 });
 
 
+
+//Apply Now Functionality
+function applyNow(fname, lname, email, files, coverLetter) {
+    var firstname = document.getElementById(fname).value;
+    var lastname = document.getElementById(lname).value;
+    var emailAdd = document.getElementById(email).value;
+    var cover = document.getElementById(coverLetter).value;
+    var fileName = document.getElementById(files);
+    var files = fileName.files;
+
+    var formData = new FormData();
+    formData.append("files", files[0]);
+
+    $.ajax(
+        {
+            //url: "/api/dashboard/uploadfile?jobId=1",
+            url: `/api/dashboard/apply-now?jobId=${vacID}&firstName="${firstname}"&lastName="${lastname}"&email="${emailAdd}"&coverletter="${cover}"`,
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {
+               // location.reload();
+                //getResumeList();
+                alert("Files Uploaded!");
+            }
+        }
+    );
+}
+
+
+
+
+
 function getJobDetails() {
 
     const uriResumeList = `/api/dashboard/job-detail?departId=${deptID}&jobId=${vacID}`
