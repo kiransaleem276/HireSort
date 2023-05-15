@@ -1,4 +1,5 @@
-﻿
+﻿//const { error } = require("jquery");
+
 
 
 var deptID;
@@ -14,6 +15,16 @@ $(document).ready(function () {
     const params = new URLSearchParams(window.location.search);
     deptID = params.get('departId');
     vacID = params.get('vacancyId');
+
+
+    if (window.location.search == "Admin") {
+        document.getElementById("btnAddNew").style.display = "inline-block";
+        document.getElementById("btnHome").style.display = "inline-block";
+    }
+    else {
+        document.getElementById("btnAddNew").style.display = "none";
+        document.getElementById("btnHome").style.display = "none";
+    }
 
     getJobDetails();
     //resumeShortlist();
@@ -31,12 +42,12 @@ function applyNow(fname, lname, email, files, coverLetter) {
     var files = fileName.files;
 
     var formData = new FormData();
-    formData.append("files", files[0]);
+    formData.append("file", files[0]);
 
     $.ajax(
         {
             //url: "/api/dashboard/uploadfile?jobId=1",
-            url: `/api/dashboard/apply-now?jobId=${vacID}&firstName="${firstname}"&lastName="${lastname}"&email="${emailAdd}"&coverletter="${cover}"`,
+            url: `/api/dashboard/apply-now?jobId=${vacID}&firstName=${firstname}&lastName=${lastname}&email=${emailAdd}&coverletter="${cover}"`,
             data: formData,
             processData: false,
             contentType: false,
@@ -45,6 +56,11 @@ function applyNow(fname, lname, email, files, coverLetter) {
                // location.reload();
                 //getResumeList();
                 alert("Files Uploaded!");
+            },
+            error: function (data) {
+                // location.reload();
+                //getResumeList();
+                alert(data);
             }
         }
     );
@@ -64,7 +80,6 @@ function getJobDetails() {
 }
 
 function _displayJobDetails(data) {
-    debugger;
     const jobdetailist = document.getElementById('jobDesc');
     const jobTenureList = document.getElementById('jobSummary');
     const jobResponsibility = document.getElementById('jobResponsibility');

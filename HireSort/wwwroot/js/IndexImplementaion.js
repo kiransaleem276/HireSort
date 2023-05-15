@@ -39,7 +39,8 @@ function getItemsDept() {
 
 function _displayItemsDept(data) {
 
-    //debugger;
+    //
+    ;
 
     var status = data.statusCode
     var parsedata = data.successData
