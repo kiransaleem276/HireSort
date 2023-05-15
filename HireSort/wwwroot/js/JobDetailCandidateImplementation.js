@@ -46,7 +46,7 @@ function applyNow(fname, lname, email, files, coverLetter) {
 
     $.ajax(
         {
-            //url: "/api/dashboard/uploadfile?jobId=1",
+            //url: "/api/dashboard/uplojjjjjjjadfile?jobId=1",
             url: `/api/dashboard/apply-now?jobId=${vacID}&firstName=${firstname}&lastName=${lastname}&email=${emailAdd}&coverletter="${cover}"`,
             data: formData,
             processData: false,
